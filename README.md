@@ -28,3 +28,6 @@ Data:
 
 Functions:
 - grant users, trigger, stored procedures, view
+
+**Server:**
+
