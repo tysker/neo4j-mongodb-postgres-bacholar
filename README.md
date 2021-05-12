@@ -23,6 +23,8 @@ Functions:
 - Docker?
 Data: 
 - User (username, password, search history)
+- Aktie tabel
+- Søgeord
 
 Functions:
 - grant users, trigger, stored procedures, view
