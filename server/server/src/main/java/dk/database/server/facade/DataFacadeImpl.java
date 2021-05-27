@@ -5,6 +5,8 @@ import dk.database.server.entities.Stock;
 import dk.database.server.entities.User;
 import dk.database.server.facade.interfaces.DataFacade;
 import dk.database.server.service.UserServiceImpl;
+import dk.database.server.service.interfaces.KeywordService;
+import dk.database.server.service.interfaces.StockService;
 import dk.database.server.service.interfaces.UserService;
 ;
 import java.sql.SQLException;
@@ -13,6 +15,8 @@ import java.util.Map;
 public class DataFacadeImpl implements DataFacade {
 
     private UserService userService;
+    private KeywordService keywordService;
+    private StockService stockService;
 
     @Override
     public Map<Integer, User> getAllUsers() throws SQLException, ClassNotFoundException {
@@ -25,22 +29,22 @@ public class DataFacadeImpl implements DataFacade {
     }
 
     @Override
-    public Map<Integer, Keyword> getAllKeywords() {
-        return null;
+    public Map<Integer, Keyword> getAllKeywords() throws SQLException, ClassNotFoundException {
+        return keywordService.getAllKeywords();
     }
 
     @Override
-    public Keyword getKeywordById(int keywordId) {
-        return null;
+    public Keyword getKeywordById(int keywordId) throws SQLException, ClassNotFoundException {
+        return keywordService.getKeywordById(keywordId);
     }
 
     @Override
     public Map<Integer, Stock> getAllStocks() {
-        return null;
+        return stockService.getAllStocks();
     }
 
     @Override
     public Stock getStockById(int stockId) {
-        return null;
+        return stockService.getStockById(stockId);
     }
 }

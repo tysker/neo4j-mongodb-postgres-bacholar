@@ -22,7 +22,7 @@ public class StockController {
 
     @Path("/")
     @GET
-    public Response getAllUsers() throws SQLException, ClassNotFoundException {
+    public Response getAllStocks() throws SQLException, ClassNotFoundException {
         Map<Integer, Stock> users = service.getAllStocks();
         return Response.status(Response.Status.OK)
                 .entity(users)

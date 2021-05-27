@@ -12,9 +12,9 @@ public interface DataFacade {
     Map<Integer,User> getAllUsers() throws SQLException, ClassNotFoundException;
     User getUserById(int userId) throws SQLException, ClassNotFoundException;
 
-    Map<Integer, Keyword> getAllKeywords();
-    Keyword getKeywordById(int keywordId);
+    Map<Integer, Keyword> getAllKeywords() throws SQLException, ClassNotFoundException ;
+    Keyword getKeywordById(int keywordId) throws SQLException, ClassNotFoundException ;
 
-    Map<Integer, Stock> getAllStocks();
-    Stock getStockById(int stockId);
+    Map<Integer, Stock> getAllStocks() throws SQLException, ClassNotFoundException ;
+    Stock getStockById(int stockId) throws SQLException, ClassNotFoundException ;
 }
