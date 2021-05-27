@@ -1,16 +1,13 @@
 package dk.database.server.service;
 
 import dk.database.server.config.DBConnection;
-import dk.database.server.domain.UserKeywordDTO;
 import dk.database.server.entities.Keyword;
 import dk.database.server.entities.User;
 import dk.database.server.entities.UserKeyword;
 import dk.database.server.service.interfaces.UserService;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class UserServiceImpl implements UserService {
@@ -72,5 +69,4 @@ public class UserServiceImpl implements UserService {
             return null;
         }
     }
-
 }

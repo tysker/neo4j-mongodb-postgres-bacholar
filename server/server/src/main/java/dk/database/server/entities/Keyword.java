@@ -1,13 +1,14 @@
 package dk.database.server.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Keyword implements Serializable {
+public class Keyword {
 
     private int id;
     private String keyword;

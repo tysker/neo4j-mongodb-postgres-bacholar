@@ -6,10 +6,11 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-@Data
+
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserKeyword implements Serializable {
+public class UserKeyword {
 
     private int id;
     private String userName, email, password;
