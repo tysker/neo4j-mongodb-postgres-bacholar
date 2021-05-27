@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface DataFacade {
 
-    Map<Integer,User> getAllUsers();
+    Map<Integer,User> getAllUsers() throws SQLException, ClassNotFoundException;
     User getUserById(int userId) throws SQLException, ClassNotFoundException;
 
     Map<Integer, Keyword> getAllKeywords();

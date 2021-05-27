@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface UserService {
 
-    Map<Integer,User> getAllUsers();
+    Map<Integer,User> getAllUsers() throws SQLException, ClassNotFoundException;
     User getUserById(int userId) throws SQLException, ClassNotFoundException;
-    UserKeyword getUserKeyword() throws SQLException, ClassNotFoundException;
+    UserKeyword getUserKeyword(int userId) throws SQLException, ClassNotFoundException;
 }

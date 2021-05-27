@@ -12,7 +12,7 @@ public class DBConnection {
 
         Connection connection = null;
         Class.forName("org.postgresql.Driver");
-        String URL = "jdbc:postgresql://localhost:5432/postgres";
+        String URL = "jdbc:postgresql://localhost:5438/postgres";
         String USER = "postgres";
         String PASSWORD = "postgres";
 

@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS log_users;
 
 CREATE DATABASE dbd_exam;
 
+
 CREATE TABLE IF NOT EXISTS users (
 	id SERIAL PRIMARY KEY,
 	username varchar(100) NOT NULL,

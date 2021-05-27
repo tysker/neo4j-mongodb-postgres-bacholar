@@ -15,7 +15,7 @@ public class DataFacadeImpl implements DataFacade {
     private UserService userService;
 
     @Override
-    public Map<Integer, User> getAllUsers() {
+    public Map<Integer, User> getAllUsers() throws SQLException, ClassNotFoundException {
         return userService.getAllUsers();
     }
 
