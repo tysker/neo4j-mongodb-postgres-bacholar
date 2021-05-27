@@ -4,12 +4,12 @@ import dk.database.server.entities.Stock;
 import dk.database.server.service.StockServiceImpl;
 import dk.database.server.service.interfaces.StockService;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+import java.net.URI;
 import java.sql.SQLException;
 import java.util.Map;
 
@@ -18,14 +18,31 @@ import java.util.Map;
 @Produces(MediaType.APPLICATION_JSON)
 public class StockController {
 
-    StockService service = new StockServiceImpl();
+    private final StockService service = new StockServiceImpl();
 
     @Path("/")
     @GET
-    public Response getAllStocks() throws SQLException, ClassNotFoundException {
-        Map<Integer, Stock> users = service.getAllStocks();
-        return Response.status(Response.Status.OK)
-                .entity(users)
+    public Response getAllStocks(@Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
+        Map<Integer, Stock> stocks = service.getAllStocks();
+        URI uri = uriInfo.getAbsolutePathBuilder().build();
+        return Response
+                .created(uri)
+                .status(Response.Status.OK)
+                .entity(stocks)
+                .build();
+    }
+
+    @Path("/{stockId}")
+    @GET
+    public Response getStockById(@PathParam("stockId") int stockId, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
+        Stock stock = service.getStockById(stockId);
+        URI uri = uriInfo.getAbsolutePathBuilder()
+                .build();
+        return Response
+                .created(uri)
+                .type(MediaType.APPLICATION_JSON_TYPE)
+                .status(Response.Status.OK)
+                .entity(stock)
                 .build();
     }
 }

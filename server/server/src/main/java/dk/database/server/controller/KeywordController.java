@@ -35,7 +35,7 @@ public class KeywordController {
 
     @Path("/{keywordId}")
     @GET
-    public Response getUserById(@PathParam("keywordId") int keywordId, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
+    public Response getKeywordById(@PathParam("keywordId") int keywordId, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Keyword keyword = service.getKeywordById(keywordId);
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();

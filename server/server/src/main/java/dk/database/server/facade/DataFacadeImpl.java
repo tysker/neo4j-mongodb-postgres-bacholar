@@ -4,7 +4,6 @@ import dk.database.server.entities.Keyword;
 import dk.database.server.entities.Stock;
 import dk.database.server.entities.User;
 import dk.database.server.facade.interfaces.DataFacade;
-import dk.database.server.service.UserServiceImpl;
 import dk.database.server.service.interfaces.KeywordService;
 import dk.database.server.service.interfaces.StockService;
 import dk.database.server.service.interfaces.UserService;
@@ -39,12 +38,12 @@ public class DataFacadeImpl implements DataFacade {
     }
 
     @Override
-    public Map<Integer, Stock> getAllStocks() {
+    public Map<Integer, Stock> getAllStocks() throws SQLException, ClassNotFoundException {
         return stockService.getAllStocks();
     }
 
     @Override
-    public Stock getStockById(int stockId) {
+    public Stock getStockById(int stockId) throws SQLException, ClassNotFoundException {
         return stockService.getStockById(stockId);
     }
 }
