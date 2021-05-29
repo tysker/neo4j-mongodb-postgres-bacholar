@@ -2,9 +2,9 @@ package dk.database.server.service;
 
 import dk.database.server.config.DBConnection;
 import dk.database.server.domain.UserCreation;
-import dk.database.server.entities.Keyword;
-import dk.database.server.entities.User;
-import dk.database.server.entities.UserKeyword;
+import dk.database.server.domain.UserKeywordCreation;
+import dk.database.server.domain.UserStockCreation;
+import dk.database.server.entities.*;
 import dk.database.server.service.interfaces.UserService;
 
 import java.sql.*;
@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
         try (Connection connection = db.connect()) {
             Map<Integer, User> users = new HashMap<>();
 
-            String sql = "SELECT * FROM users;";
+            String sql = "SELECT * FROM view_users;";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
 
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     public User getUserById(int userId) throws SQLException, ClassNotFoundException {
 
         try (Connection connection = db.connect()) {
-            String sql = "SELECT * FROM users WHERE id = ?";
+            String sql = "SELECT * FROM view_users WHERE id = ?";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, userId);
                 ResultSet rs = ps.executeQuery();
@@ -108,46 +108,33 @@ public class UserServiceImpl implements UserService {
                 return user;
             }
         }
-//
-//        {
-//            var sql = "call add_user(?,?,?)";
-//            try (Connection connection = db.connect()) {
-//                var stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-//                {
-//                    stmt.setString(1, userCreation.getUserName());
-//                    stmt.setString(2, userCreation.getPassword());
-//                    stmt.setString(3, userCreation.getEmail());
-//                    stmt.executeUpdate();
-//                    // get the newly created id
-//                    try (var resultSet = stmt.getGeneratedKeys()) {
-//                        resultSet.next();
-//                        int newId = resultSet.getInt(1);
-//                        return new User(newId, userCreation.getUserName(), userCreation.getEmail(), userCreation.getPassword());
-//                    }
-//                }
-//            }
-//
-////        try (Connection connection = db.connect()) {
-////            User user = null;
-////            // String sql = "INSERT INTO users(username, email, pwd) VALUES (?,?,?)";
-////            String sql = "call add_user(?,?,?);";
-////
-////            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-////                ps.setString(1, userCreation.getUserName());
-////                ps.setString(2, userCreation.getPassword());
-////                ps.setString(3, userCreation.getEmail());
-////                ps.executeUpdate();
-////
-////                ResultSet ids = ps.getGeneratedKeys();
-////                ids.next();
-////                int id = ids.getInt(1);
-////                user = new User(id, userCreation.getUserName(), userCreation.getEmail(), userCreation.getPassword());
-////                System.out.println(user.getId());
-////
-////
-////            }
-////            return user;
-////        }
-//        }
+    }
+
+    @Override
+    public void addUserStock(UserStockCreation userStockCreation) throws SQLException, ClassNotFoundException {
+        try (Connection connection = db.connect()) {
+            UserStock userStock = null;
+            Map<Integer, Stock> stocks = new HashMap<>();
+
+            String sql = "SELECT * FROM users WHERE email = ? ";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setString(1, userStockCreation.getEmail());
+                ResultSet rs = ps.executeQuery();
+
+                if(rs.next())
+                {
+                    int userId = rs.getInt("id");;
+
+                }
+            }
+        }
+
+    }
+
+    @Override
+    public void addUserKeyword(UserKeywordCreation userKeywordCreation) throws SQLException, ClassNotFoundException {
+
     }
 }

@@ -1,8 +1,11 @@
 package dk.database.server.service.interfaces;
 
 import dk.database.server.domain.UserCreation;
+import dk.database.server.domain.UserKeywordCreation;
+import dk.database.server.domain.UserStockCreation;
 import dk.database.server.entities.User;
 import dk.database.server.entities.UserKeyword;
+import dk.database.server.entities.UserStock;
 
 import java.sql.SQLException;
 import java.util.Map;
@@ -13,4 +16,6 @@ public interface UserService {
     User getUserById(int userId) throws SQLException, ClassNotFoundException;
     UserKeyword getUserKeyword(int userId) throws SQLException, ClassNotFoundException;
     User addUser(UserCreation user) throws SQLException, ClassNotFoundException;
+    void addUserStock(UserStockCreation userStockCreation) throws SQLException, ClassNotFoundException;
+    void addUserKeyword(UserKeywordCreation userKeywordCreation) throws SQLException, ClassNotFoundException;
 }

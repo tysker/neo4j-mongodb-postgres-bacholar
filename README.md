@@ -1,6 +1,16 @@
-## Database project:
+# Database project:
 
 Claus, Morten, Mads, Jörg
+
+### Project desription
+
+<img 
+src="./images/dsc_db.png" 
+alt="EER Diagram"
+style="height: 70%; width:70%;"
+/>
+
+
 
 **Java Server:**
 - Rest?
