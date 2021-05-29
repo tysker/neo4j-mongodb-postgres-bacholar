@@ -112,24 +112,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUserStock(UserStockCreation userStockCreation) throws SQLException, ClassNotFoundException {
-        try (Connection connection = db.connect()) {
-            UserStock userStock = null;
-            Map<Integer, Stock> stocks = new HashMap<>();
-
-            String sql = "SELECT * FROM users WHERE email = ? ";
-
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
-                ps.setString(1, userStockCreation.getEmail());
-                ResultSet rs = ps.executeQuery();
-
-                if(rs.next())
-                {
-                    int userId = rs.getInt("id");;
-
-                }
-            }
-        }
 
     }
 
