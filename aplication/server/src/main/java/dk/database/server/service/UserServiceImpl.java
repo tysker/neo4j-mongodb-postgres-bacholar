@@ -89,46 +89,65 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(UserCreation userCreation) throws SQLException, ClassNotFoundException {
-
+        try(Connection connection = db.connect())
         {
-            var sql = "call add_user(?,?,?)";
-            try (Connection connection = db.connect()) {
-                var stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                {
-                    stmt.setString(1, userCreation.getUserName());
-                    stmt.setString(2, userCreation.getPassword());
-                    stmt.setString(3, userCreation.getEmail());
-                    stmt.executeUpdate();
-                    // get the newly created id
-                    try (var resultSet = stmt.getGeneratedKeys()) {
-                        resultSet.next();
-                        int newId = resultSet.getInt(1);
-                        return new User(newId, userCreation.getUserName(), userCreation.getEmail(), userCreation.getPassword());
-                    }
-                }
-            }
+            String sql = "{? = call add_user(?, ?, ?)}";
 
-//        try (Connection connection = db.connect()) {
-//            User user = null;
-//            // String sql = "INSERT INTO users(username, email, pwd) VALUES (?,?,?)";
-//            String sql = "call add_user(?,?,?);";
-//
-//            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-//                ps.setString(1, userCreation.getUserName());
-//                ps.setString(2, userCreation.getPassword());
-//                ps.setString(3, userCreation.getEmail());
-//                ps.executeUpdate();
-//
-//                ResultSet ids = ps.getGeneratedKeys();
-//                ids.next();
-//                int id = ids.getInt(1);
-//                user = new User(id, userCreation.getUserName(), userCreation.getEmail(), userCreation.getPassword());
-//                System.out.println(user.getId());
-//
-//
-//            }
-//            return user;
-//        }
+            User user;
+
+            try (CallableStatement stmt= connection.prepareCall(sql))
+            {
+                stmt.setString(2, userCreation.getUserName());
+                stmt.setString(3, userCreation.getPassword());
+                stmt.setString(4, userCreation.getEmail());
+                stmt.registerOutParameter(1,Types.INTEGER);
+                stmt.execute();
+
+                int newId = stmt.getInt(1);
+                user = new User(newId, userCreation.getUserName(), userCreation.getEmail(), userCreation.getPassword());
+                return user;
+            }
         }
+//
+//        {
+//            var sql = "call add_user(?,?,?)";
+//            try (Connection connection = db.connect()) {
+//                var stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+//                {
+//                    stmt.setString(1, userCreation.getUserName());
+//                    stmt.setString(2, userCreation.getPassword());
+//                    stmt.setString(3, userCreation.getEmail());
+//                    stmt.executeUpdate();
+//                    // get the newly created id
+//                    try (var resultSet = stmt.getGeneratedKeys()) {
+//                        resultSet.next();
+//                        int newId = resultSet.getInt(1);
+//                        return new User(newId, userCreation.getUserName(), userCreation.getEmail(), userCreation.getPassword());
+//                    }
+//                }
+//            }
+//
+////        try (Connection connection = db.connect()) {
+////            User user = null;
+////            // String sql = "INSERT INTO users(username, email, pwd) VALUES (?,?,?)";
+////            String sql = "call add_user(?,?,?);";
+////
+////            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+////                ps.setString(1, userCreation.getUserName());
+////                ps.setString(2, userCreation.getPassword());
+////                ps.setString(3, userCreation.getEmail());
+////                ps.executeUpdate();
+////
+////                ResultSet ids = ps.getGeneratedKeys();
+////                ids.next();
+////                int id = ids.getInt(1);
+////                user = new User(id, userCreation.getUserName(), userCreation.getEmail(), userCreation.getPassword());
+////                System.out.println(user.getId());
+////
+////
+////            }
+////            return user;
+////        }
+//        }
     }
 }

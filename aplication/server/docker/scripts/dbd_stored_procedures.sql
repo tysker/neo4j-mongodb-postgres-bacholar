@@ -1,6 +1,6 @@
 drop procedure if exists add_keyword;
 drop procedure if exists add_stock;
-drop procedure if exists add_user;
+drop function if exists add_user;
 drop procedure if exists add_user_keyword;
 drop procedure if exists add_user_stock;
 
@@ -21,11 +21,15 @@ CREATE OR REPLACE PROCEDURE add_stock(stock_name varchar)
 language plpgsql;
 
 -- STORED PROCEDURE FOR ADD NEW USER
-CREATE OR REPLACE PROCEDURE add_user(username varchar, pwd varchar, email varchar)
+CREATE OR REPLACE FUNCTION add_user(username varchar, pwd varchar, email varchar) 
+	returns integer
 	AS $$
-	BEGIN
-		INSERT INTO users (username, email, pwd) values(username, email, pwd);
-    END$$
+	declare 
+	newId integer;
+	BEGIN 
+		INSERT INTO users (username, pwd, email) values(username, pwd, email) returning id into newid;
+	return newId;
+	END$$
 language plpgsql;
 
 -- STORED PROCEDURE FOR ADD NEW USER_KEYWORD
