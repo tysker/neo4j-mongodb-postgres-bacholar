@@ -13,7 +13,7 @@ services:
         ports:
           - '5438:5432'
         volumes: 
-          - ./postgres:/postgres_data/
+          # - ./pgdata:/var/lib/postgresql/data/
           # copy the sql script to create tables
           - ./scripts/dbd_tables.sql:/docker-entrypoint-initdb.d/dbd_tables.sql
           # copy the sql script to create triggers
