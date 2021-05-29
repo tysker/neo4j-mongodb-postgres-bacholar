@@ -19,7 +19,7 @@ CREATE OR REPLACE FUNCTION stock_adding_log()
 $$
 BEGIN
     INSERT INTO "log_stocks"("id", "stockname", "db_username", "adding_time")
-    VALUES(new."id",NEW."stockname",current_user,current_date);
+    VALUES(NEW."id",NEW."stockname",current_user,current_date);
 RETURN NEW;
 END;
 $$
@@ -30,7 +30,7 @@ CREATE OR REPLACE FUNCTION user_adding_log()
 $$
 BEGIN
     INSERT INTO "log_users"("id", "username", "email", "db_username", "adding_time")
-    VALUES(new."id",NEW."username",NEW."email",current_user,current_date);
+    VALUES(NEW."id",NEW."username",NEW."email",current_user,current_date);
 RETURN NEW;
 END;
 $$

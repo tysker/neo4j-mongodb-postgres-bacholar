@@ -1,6 +1,7 @@
 package dk.database.server.service;
 
 import dk.database.server.config.DBConnection;
+import dk.database.server.domain.StockCreation;
 import dk.database.server.entities.Stock;
 import dk.database.server.service.interfaces.StockService;
 
@@ -61,7 +62,7 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public Stock addStock(Stock stock) throws SQLException, ClassNotFoundException {
+    public Stock addStock(StockCreation stockCreation) throws SQLException, ClassNotFoundException {
         try(Connection connection = db.connect())
         {
             String sql = "{ ? = call add_stock(?)}";
@@ -70,12 +71,12 @@ public class StockServiceImpl implements StockService {
 
             try (CallableStatement stmt= connection.prepareCall(sql))
             {
-                stmt.setString(2,stock.getStockName());
+                stmt.setString(2,stockCreation.getStockName());
                 stmt.registerOutParameter(1,Types.INTEGER);
                 stmt.execute();
 
                 int newId = stmt.getInt(1);
-                _stock = new Stock(newId, stock.getStockName());
+                _stock = new Stock(newId, stockCreation.getStockName());
                 return _stock;
             }
         }

@@ -1,5 +1,6 @@
 package dk.database.server.controller;
 
+import dk.database.server.domain.StockCreation;
 import dk.database.server.domain.UserCreation;
 import dk.database.server.entities.Stock;
 import dk.database.server.entities.User;
@@ -51,8 +52,8 @@ public class StockController {
 
     @Path("/")
     @POST
-    public Response addStock(@RequestBody Stock stock, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
-        Stock _stock = service.addStock(stock);
+    public Response addStock(@RequestBody StockCreation stockCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
+        Stock _stock = service.addStock(stockCreation);
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response

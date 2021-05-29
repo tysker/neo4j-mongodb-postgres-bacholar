@@ -4,6 +4,7 @@ services:
         image: postgres:latest
         restart: always
         environment:
+          - PG_DATABASE=dbd_exam
           - POSTGRES_USER=postgres
           - POSTGRES_PASSWORD=postgres
         logging:
