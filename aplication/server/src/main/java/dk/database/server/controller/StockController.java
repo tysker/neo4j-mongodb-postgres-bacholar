@@ -1,8 +1,11 @@
 package dk.database.server.controller;
 
+import dk.database.server.domain.UserCreation;
 import dk.database.server.entities.Stock;
+import dk.database.server.entities.User;
 import dk.database.server.service.StockServiceImpl;
 import dk.database.server.service.interfaces.StockService;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -43,6 +46,19 @@ public class StockController {
                 .type(MediaType.APPLICATION_JSON_TYPE)
                 .status(Response.Status.OK)
                 .entity(stock)
+                .build();
+    }
+
+    @Path("/")
+    @POST
+    public Response addStock(@RequestBody Stock stock, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
+        Stock _stock = service.addStock(stock);
+        URI uri = uriInfo.getAbsolutePathBuilder()
+                .build();
+        return Response
+                .created(uri)
+                .status(Response.Status.OK)
+                .entity(_stock)
                 .build();
     }
 }

@@ -1,14 +1,10 @@
 package dk.database.server.service;
 
 import dk.database.server.config.DBConnection;
-import dk.database.server.entities.Keyword;
 import dk.database.server.entities.Stock;
 import dk.database.server.service.interfaces.StockService;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,6 +62,22 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public Stock addStock(Stock stock) throws SQLException, ClassNotFoundException {
-        return null;
+        try(Connection connection = db.connect())
+        {
+            String sql = "{ ? = call add_stock(?)}";
+
+            Stock _stock;
+
+            try (CallableStatement stmt= connection.prepareCall(sql))
+            {
+                stmt.setString(2,stock.getStockName());
+                stmt.registerOutParameter(1,Types.INTEGER);
+                stmt.execute();
+
+                int newId = stmt.getInt(1);
+                _stock = new Stock(newId, stock.getStockName());
+                return _stock;
+            }
+        }
     }
 }

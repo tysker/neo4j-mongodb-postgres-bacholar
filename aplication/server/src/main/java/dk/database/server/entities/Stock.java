@@ -11,4 +11,5 @@ public class Stock {
 
     private int id;
     private String stockName;
+
 }

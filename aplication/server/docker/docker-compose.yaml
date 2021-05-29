@@ -12,15 +12,17 @@ services:
             max-file: "3"
         ports:
           - '5438:5432'
-        volumes: 
-          # - ./pgdata:/var/lib/postgresql/data/
+        volumes:
+          #- /var/lib/docker/volumes:/var/lib/postgresql/data/
           # copy the sql script to create tables
-          - ./scripts/dbd_tables.sql:/docker-entrypoint-initdb.d/dbd_tables.sql
+          - ./scripts/01_dbd_tables.sql:/docker-entrypoint-initdb.d/01_dbd_tables.sql
           # copy the sql script to create triggers
-          - ./scripts/dbd_trigger.sql:/docker-entrypoint-initdb.d/dbd_trigger.sql
+          - ./scripts/04_dbd_trigger.sql:/docker-entrypoint-initdb.d/04_dbd_trigger.sql
           # copy the sql script to create views
-          - ./scripts/dbd_views.sql:/docker-entrypoint-initdb.d/dbd_views.sql
+          - ./scripts/05_dbd_views.sql:/docker-entrypoint-initdb.d/05_dbd_views.sql
           # copy the sql script to create procedures
-          - ./scripts/dbd_stored_procedures.sql:/docker-entrypoint-initdb.d/dbd_stored_procedures.sql
+          - ./scripts/02_dbd_stored_procedures.sql:/docker-entrypoint-initdb.d/02_dbd_stored_procedures.sql
+          # copy the sql script to create functions
+          - ./scripts/03_dbd_function.sql:/docker-entrypoint-initdb.d/03_dbd_function.sql
           # copy the sql script to fill tables
-          #- ./scripts/dbd_input.sql:/docker-entrypoint-initdb.d/dbd_input.sql
+          - ./scripts/06_dbd_input.sql:/docker-entrypoint-initdb.d/06_dbd_input.sql
