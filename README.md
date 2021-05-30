@@ -13,7 +13,7 @@ width="40%"
 
 
 
-[Java Server](./Server.md)
+[Java Server](Server.md)
 
 
 **MongoDB:**
