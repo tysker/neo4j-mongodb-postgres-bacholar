@@ -1,8 +1,16 @@
 # Database project:
 
-Claus, Morten, Mads, Jörg
+**Date: 02-juni-2021**
 
-### Project desription
+
+**Authors:**
+
+* Claus Kramath,
+* Morten Feldt,
+* Mads Wulff,
+* Jörg Oertel, cph-jo130@cphbusiness.dk
+
+*** 
 
 <img 
 src="./images/dsc_db.png" 
@@ -11,17 +19,12 @@ height="40%"
 width="40%"
 />
 
+***
 
-
-**Java Server:**
-- Rest?
-
-**MongoDB:**
-- Docker?
-
-**Neo4j:**
-- Docker?
-
+* [**Java Server documentation**](SERVER.md)
+* [**MongoDB documentation**](MONGODB.md)
+* [**Neo4j documentation**](NEO4J.md)
+***
 Data:
 - Artikler
 - User relation
