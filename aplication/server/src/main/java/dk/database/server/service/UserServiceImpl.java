@@ -16,6 +16,12 @@ public class UserServiceImpl implements UserService {
     private DBConnection db = new DBConnection();
 
 
+    /**
+     *
+     * @return Map</Integer, User>
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public Map<Integer, User> getAllUsers() throws SQLException, ClassNotFoundException {
 
@@ -39,6 +45,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     *
+     * @param userId
+     * @return User
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public User getUserById(int userId) throws SQLException, ClassNotFoundException {
 
@@ -60,6 +73,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     *
+     * @param userId
+     * @return UserKeyword
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public UserKeyword getUserKeyword(int userId) throws SQLException, ClassNotFoundException {
         try (Connection connection = db.connect()) {
@@ -87,6 +107,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     *
+     * @param userCreation
+     * @return User
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public User addUser(UserCreation userCreation) throws SQLException, ClassNotFoundException {
         try(Connection connection = db.connect())
@@ -110,6 +137,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     *
+     * @param userStockCreation
+     * @return boolean
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public boolean applyStock(UserStockCreation userStockCreation) throws SQLException, ClassNotFoundException {
         try(Connection connection = db.connect())
@@ -129,6 +163,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     *
+     * @param userKeywordCreation
+     * @return boolean
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public boolean applyKeyword(UserKeywordCreation userKeywordCreation) throws SQLException, ClassNotFoundException {
         try(Connection connection = db.connect())

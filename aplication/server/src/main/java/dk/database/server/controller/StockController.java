@@ -1,12 +1,8 @@
 package dk.database.server.controller;
 
 import dk.database.server.domain.StockCreation;
-import dk.database.server.domain.UserCreation;
 import dk.database.server.entities.Stock;
-import dk.database.server.entities.User;
 import dk.database.server.facade.DataFacadeImpl;
-import dk.database.server.service.StockServiceImpl;
-import dk.database.server.service.interfaces.StockService;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.ws.rs.*;
@@ -25,6 +21,13 @@ public class StockController {
 
     private final DataFacadeImpl data = new DataFacadeImpl();
 
+    /**
+     *
+     * @param uriInfo returns url path in header
+     * @return Map<Integer,Stock>
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Path("/")
     @GET
     public Response getAllStocks(@Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
@@ -37,6 +40,14 @@ public class StockController {
                 .build();
     }
 
+    /**
+     *
+     * @param stockId
+     * @param uriInfo returns url path in header
+     * @return Stock
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Path("/{stockId}")
     @GET
     public Response getStockById(@PathParam("stockId") int stockId, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
@@ -51,6 +62,14 @@ public class StockController {
                 .build();
     }
 
+    /**
+     *
+     * @param stockCreation
+     * @param uriInfo returns url path in header
+     * @return Stock
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Path("/")
     @POST
     public Response addStock(@RequestBody StockCreation stockCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {

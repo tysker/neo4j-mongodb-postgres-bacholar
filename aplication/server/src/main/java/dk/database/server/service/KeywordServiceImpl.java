@@ -14,6 +14,12 @@ public class KeywordServiceImpl implements KeywordService {
 
     private final DBConnection db = new DBConnection();
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public Map<Integer, Keyword> getAllKeywords() throws SQLException, ClassNotFoundException {
         try(Connection connection = db.connect())
@@ -38,6 +44,13 @@ public class KeywordServiceImpl implements KeywordService {
         }
     }
 
+    /**
+     *
+     * @param keywordId
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public Keyword getKeywordById(int keywordId) throws SQLException, ClassNotFoundException  {
 
@@ -60,6 +73,13 @@ public class KeywordServiceImpl implements KeywordService {
         }
     }
 
+    /**
+     *
+     * @param keywordCreation
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public Keyword addKeyword(KeywordCreation keywordCreation) throws SQLException, ClassNotFoundException {
         try(Connection connection = db.connect())

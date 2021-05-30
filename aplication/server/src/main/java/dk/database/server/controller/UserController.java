@@ -6,8 +6,6 @@ import dk.database.server.domain.UserStockCreation;
 import dk.database.server.entities.User;
 import dk.database.server.entities.UserKeyword;
 import dk.database.server.facade.DataFacadeImpl;
-import dk.database.server.service.UserServiceImpl;
-import dk.database.server.service.interfaces.UserService;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.ws.rs.*;
@@ -26,6 +24,13 @@ public class UserController {
 
     private final DataFacadeImpl data = new DataFacadeImpl();
 
+    /**
+     *
+     * @param uriInfo returns url path in header
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Path("/")
     @GET
     public Response getAllUsers(@Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
@@ -38,6 +43,14 @@ public class UserController {
                 .build();
     }
 
+    /**
+     *
+     * @param userid
+     * @param uriInfo returns url path in header
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Path("/{userId}")
     @GET
     public Response getUserById(@PathParam("userId") int userid, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
@@ -51,6 +64,14 @@ public class UserController {
                 .build();
     }
 
+    /**
+     *
+     * @param userid
+     * @param uriInfo returns url path in header
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Path("/{userId}/keyword")
     @GET
     public Response getUserKeyword(@PathParam("userId") int userid, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
@@ -64,6 +85,14 @@ public class UserController {
                 .build();
     }
 
+    /**
+     *
+     * @param userCreation
+     * @param uriInfo returns url path in header
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Path("/")
     @POST
     public Response addUser(@RequestBody UserCreation userCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
@@ -77,6 +106,14 @@ public class UserController {
                 .build();
     }
 
+    /**
+     *
+     * @param userStockCreation
+     * @param uriInfo returns url path in header
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Path("/stock")
     @POST
     public Response applyStock(@RequestBody UserStockCreation userStockCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
@@ -90,6 +127,14 @@ public class UserController {
                 .build();
     }
 
+    /**
+     *
+     * @param userKeywordCreation
+     * @param uriInfo returns url path in header
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Path("/keyword")
     @POST
     public Response applyKeyword(@RequestBody UserKeywordCreation userKeywordCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {

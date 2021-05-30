@@ -13,6 +13,12 @@ public class StockServiceImpl implements StockService {
 
     private final DBConnection db = new DBConnection();
 
+    /**
+     *
+     * @return Map</Integer,Stock>
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public Map<Integer, Stock> getAllStocks() throws SQLException, ClassNotFoundException {
         try(Connection connection = db.connect())
@@ -37,6 +43,13 @@ public class StockServiceImpl implements StockService {
         }
     }
 
+    /**
+     *
+     * @param stockId
+     * @return Stock
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public Stock getStockById(int stockId) throws SQLException, ClassNotFoundException {
 
@@ -61,6 +74,13 @@ public class StockServiceImpl implements StockService {
         }
     }
 
+    /**
+     *
+     * @param stockCreation
+     * @return Stock
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public Stock addStock(StockCreation stockCreation) throws SQLException, ClassNotFoundException {
         try(Connection connection = db.connect())

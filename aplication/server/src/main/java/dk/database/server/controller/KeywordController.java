@@ -1,13 +1,8 @@
 package dk.database.server.controller;
 
 import dk.database.server.domain.KeywordCreation;
-import dk.database.server.domain.StockCreation;
 import dk.database.server.entities.Keyword;
-import dk.database.server.entities.Stock;
-import dk.database.server.entities.User;
 import dk.database.server.facade.DataFacadeImpl;
-import dk.database.server.service.KeywordServiceImpl;
-import dk.database.server.service.interfaces.KeywordService;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.ws.rs.*;
@@ -26,6 +21,13 @@ public class KeywordController {
 
     private final DataFacadeImpl data = new DataFacadeImpl();
 
+    /**
+     *
+     * @param uriInfo returns url path in header
+     * @return  Map</Integer,Keyword>
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Path("/")
     @GET
     public Response getAllKeywords(@Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
@@ -38,6 +40,14 @@ public class KeywordController {
                 .build();
     }
 
+    /**
+     *
+     * @param keywordId
+     * @param uriInfo returns url path in header
+     * @return Keyword
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Path("/{keywordId}")
     @GET
     public Response getKeywordById(@PathParam("keywordId") int keywordId, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
@@ -52,6 +62,14 @@ public class KeywordController {
                 .build();
     }
 
+    /**
+     *
+     * @param keywordCreation
+     * @param uriInfo returns url path in header
+     * @return Keyword
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Path("/")
     @POST
     public Response addKeyword(@RequestBody KeywordCreation keywordCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {

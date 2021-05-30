@@ -8,6 +8,12 @@ public class DBConnection {
 
     private Connection connection;
 
+    /**
+     *
+     * @return Connection
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public Connection connect() throws SQLException, ClassNotFoundException {
 
         Connection connection = null;
