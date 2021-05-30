@@ -34,7 +34,7 @@ getAllUsers(@Context UriInfo uriInfo)
 @GET
 getUserById(@PathParam("userId") int userid, @Context UriInfo uriInfo)
 ```
-<p style="background-color:blue">get a keyword from a specifik user by it's id</p>
+<p style="background-color:blue">get all keywords from a specifik user with help of the users id</p>
 
 ```
 @Path("/{userId}/keyword")
@@ -48,14 +48,14 @@ getUserKeyword(@PathParam("userId") int userid, @Context UriInfo uriInfo)
 @POST
 addUser(@RequestBody UserCreation userCreation, @Context UriInfo uriInfo)
 ```
-<p style="background-color:blue">add stock to the stock table, if stock not exitst and add stock id to user_stock table.</p>
+<p style="background-color:blue">add stock to the stock table if stock not exitst and add stock and user id to users_stock table.</p>
 
 ```
 @Path("/stock")
 @POST
 applyStock(@RequestBody UserStockCreation userStockCreation, @Context UriInfo uriInfo)
 ```
-<p style="background-color:blue">add a keyword to the keyword table, if keyword not exitst, and add keyword id to user_keyword table.</p>
+<p style="background-color:blue">add a keyword to the keyword table if keyword not exitst, and add keyword and user id to users_keyword table.</p>
 
 ```
 @Path("/keyword")
