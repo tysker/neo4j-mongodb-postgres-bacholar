@@ -1,13 +1,12 @@
 package dk.database.server.service;
 
 import dk.database.server.config.DBConnection;
+import dk.database.server.domain.KeywordCreation;
 import dk.database.server.entities.Keyword;
+import dk.database.server.entities.Stock;
 import dk.database.server.service.interfaces.KeywordService;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,7 +61,23 @@ public class KeywordServiceImpl implements KeywordService {
     }
 
     @Override
-    public Keyword addKeyword(Keyword keyword) throws SQLException, ClassNotFoundException {
-        return null;
+    public Keyword addKeyword(KeywordCreation keywordCreation) throws SQLException, ClassNotFoundException {
+        try(Connection connection = db.connect())
+        {
+            String sql = "{ ? = call add_keyword(?)}";
+
+            Keyword keyword;
+
+            try (CallableStatement stmt= connection.prepareCall(sql))
+            {
+                stmt.setString(2, keywordCreation.getKeyword());
+                stmt.registerOutParameter(1,Types.INTEGER);
+                stmt.execute();
+
+                int newId = stmt.getInt(1);
+                keyword = new Keyword(newId, keywordCreation.getKeyword());
+                return keyword;
+            }
+        }
     }
 }

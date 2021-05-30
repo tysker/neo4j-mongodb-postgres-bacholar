@@ -3,6 +3,7 @@ package dk.database.server.controller;
 import dk.database.server.domain.UserCreation;
 import dk.database.server.entities.User;
 import dk.database.server.entities.UserKeyword;
+import dk.database.server.facade.DataFacadeImpl;
 import dk.database.server.service.UserServiceImpl;
 import dk.database.server.service.interfaces.UserService;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,12 +22,12 @@ import java.util.Map;
 @Produces(MediaType.APPLICATION_JSON)
 public class UserController {
 
-    private final UserService service = new UserServiceImpl();
+    private final DataFacadeImpl data = new DataFacadeImpl();
 
     @Path("/")
     @GET
     public Response getAllUsers(@Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
-        Map<Integer, User> users = service.getAllUsers();
+        Map<Integer, User> users = data.getAllUsers();
         URI uri = uriInfo.getAbsolutePathBuilder().build();
         return Response
                 .created(uri)
@@ -38,7 +39,7 @@ public class UserController {
     @Path("/{userId}")
     @GET
     public Response getUserById(@PathParam("userId") int userid, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
-        User user = service.getUserById(userid);
+        User user = data.getUserById(userid);
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
@@ -51,7 +52,7 @@ public class UserController {
     @Path("/{userId}/keyword")
     @GET
     public Response getUserKeyword(@PathParam("userId") int userid, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
-        UserKeyword user = service.getUserKeyword(userid);
+        UserKeyword user = data.getUserKeyword(userid);
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
@@ -64,7 +65,7 @@ public class UserController {
     @Path("/")
     @POST
     public Response addUser(@RequestBody UserCreation userCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
-        User user = service.addUser(userCreation);
+        User user = data.addUser(userCreation);
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response

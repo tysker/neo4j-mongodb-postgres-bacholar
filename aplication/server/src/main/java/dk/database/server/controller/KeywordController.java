@@ -1,9 +1,14 @@
 package dk.database.server.controller;
 
+import dk.database.server.domain.KeywordCreation;
+import dk.database.server.domain.StockCreation;
 import dk.database.server.entities.Keyword;
+import dk.database.server.entities.Stock;
 import dk.database.server.entities.User;
+import dk.database.server.facade.DataFacadeImpl;
 import dk.database.server.service.KeywordServiceImpl;
 import dk.database.server.service.interfaces.KeywordService;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -19,12 +24,12 @@ import java.util.Map;
 @Produces(MediaType.APPLICATION_JSON)
 public class KeywordController {
 
-    private final KeywordService service = new KeywordServiceImpl();
+    private final DataFacadeImpl data = new DataFacadeImpl();
 
     @Path("/")
     @GET
     public Response getAllKeywords(@Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
-        Map<Integer, Keyword> keywords = service.getAllKeywords();
+        Map<Integer, Keyword> keywords = data.getAllKeywords();
         URI uri = uriInfo.getAbsolutePathBuilder().build();
         return Response
                 .created(uri)
@@ -36,12 +41,25 @@ public class KeywordController {
     @Path("/{keywordId}")
     @GET
     public Response getKeywordById(@PathParam("keywordId") int keywordId, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
-        Keyword keyword = service.getKeywordById(keywordId);
+        Keyword keyword = data.getKeywordById(keywordId);
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
                 .created(uri)
                 .type(MediaType.APPLICATION_JSON_TYPE)
+                .status(Response.Status.OK)
+                .entity(keyword)
+                .build();
+    }
+
+    @Path("/")
+    @POST
+    public Response addKeyword(@RequestBody KeywordCreation keywordCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
+        Keyword keyword = data.addKeyword(keywordCreation);
+        URI uri = uriInfo.getAbsolutePathBuilder()
+                .build();
+        return Response
+                .created(uri)
                 .status(Response.Status.OK)
                 .entity(keyword)
                 .build();

@@ -1,5 +1,6 @@
 package dk.database.server.service.interfaces;
 
+import dk.database.server.domain.KeywordCreation;
 import dk.database.server.entities.Keyword;
 
 import java.sql.SQLException;
@@ -9,5 +10,5 @@ public interface KeywordService {
 
     Map<Integer,Keyword> getAllKeywords() throws SQLException, ClassNotFoundException;
     Keyword getKeywordById(int keywordId) throws SQLException, ClassNotFoundException;
-    Keyword addKeyword(Keyword keyword) throws SQLException, ClassNotFoundException;
+    Keyword addKeyword(KeywordCreation keywordCreation) throws SQLException, ClassNotFoundException;
 }

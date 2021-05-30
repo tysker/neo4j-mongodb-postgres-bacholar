@@ -4,6 +4,7 @@ import dk.database.server.domain.StockCreation;
 import dk.database.server.domain.UserCreation;
 import dk.database.server.entities.Stock;
 import dk.database.server.entities.User;
+import dk.database.server.facade.DataFacadeImpl;
 import dk.database.server.service.StockServiceImpl;
 import dk.database.server.service.interfaces.StockService;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,12 +23,12 @@ import java.util.Map;
 @Produces(MediaType.APPLICATION_JSON)
 public class StockController {
 
-    private final StockService service = new StockServiceImpl();
+    private final DataFacadeImpl data = new DataFacadeImpl();
 
     @Path("/")
     @GET
     public Response getAllStocks(@Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
-        Map<Integer, Stock> stocks = service.getAllStocks();
+        Map<Integer, Stock> stocks = data.getAllStocks();
         URI uri = uriInfo.getAbsolutePathBuilder().build();
         return Response
                 .created(uri)
@@ -39,7 +40,7 @@ public class StockController {
     @Path("/{stockId}")
     @GET
     public Response getStockById(@PathParam("stockId") int stockId, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
-        Stock stock = service.getStockById(stockId);
+        Stock stock = data.getStockById(stockId);
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
@@ -53,7 +54,7 @@ public class StockController {
     @Path("/")
     @POST
     public Response addStock(@RequestBody StockCreation stockCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
-        Stock _stock = service.addStock(stockCreation);
+        Stock _stock = data.addStock(stockCreation);
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response

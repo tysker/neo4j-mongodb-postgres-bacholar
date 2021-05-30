@@ -67,7 +67,7 @@ public class StockServiceImpl implements StockService {
         {
             String sql = "{ ? = call add_stock(?)}";
 
-            Stock _stock;
+            Stock stock;
 
             try (CallableStatement stmt= connection.prepareCall(sql))
             {
@@ -76,8 +76,8 @@ public class StockServiceImpl implements StockService {
                 stmt.execute();
 
                 int newId = stmt.getInt(1);
-                _stock = new Stock(newId, stockCreation.getStockName());
-                return _stock;
+                stock = new Stock(newId, stockCreation.getStockName());
+                return stock;
             }
         }
     }
