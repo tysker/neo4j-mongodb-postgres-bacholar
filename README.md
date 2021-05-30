@@ -7,8 +7,8 @@ Claus, Morten, Mads, Jörg
 <img 
 src="./images/dsc_db.png" 
 alt="EER Diagram"
-height="10%" 
-width="50%"
+height="25%" 
+width="25%"
 />
 
 
