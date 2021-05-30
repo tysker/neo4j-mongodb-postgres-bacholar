@@ -23,6 +23,7 @@ http://localhost/users/ +
 <p style="background-color:blue"> get all users in table users</p>
 
 ```
+
 @Path("/")
 @GET
 getAllUsers(@Context UriInfo uriInfo)
@@ -48,14 +49,14 @@ getUserKeyword(@PathParam("userId") int userid, @Context UriInfo uriInfo)
 @POST
 addUser(@RequestBody UserCreation userCreation, @Context UriInfo uriInfo)
 ```
-<p style="background-color:blue">add stock to the stock table if stock not exitst and add stock and user id to users_stock table.</p>
+<p style="background-color:blue">add stock to the stock table if stock not exists and add stock and user id to users_stock table.</p>
 
 ```
 @Path("/stock")
 @POST
 applyStock(@RequestBody UserStockCreation userStockCreation, @Context UriInfo uriInfo)
 ```
-<p style="background-color:blue">add a keyword to the keyword table if keyword not exitst, and add keyword and user id to users_keyword table.</p>
+<p style="background-color:blue">add a keyword to the keyword table if keyword not exists, and add keyword and user id to users_keyword table.</p>
 
 ```
 @Path("/keyword")
