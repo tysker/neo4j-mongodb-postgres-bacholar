@@ -24,7 +24,9 @@ width="40%"
 * [**Java Server documentation**](SERVER.md)
 * [**MongoDB documentation**](MONGODB.md)
 * [**Neo4j documentation**](NEO4J.md)
+
 ***
+
 Data:
 - Artikler
 - User relation
