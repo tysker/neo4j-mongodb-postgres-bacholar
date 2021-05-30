@@ -27,3 +27,5 @@ services:
           - ./scripts/03_dbd_function.sql:/docker-entrypoint-initdb.d/03_dbd_function.sql
           # copy the sql script to fill tables
           - ./scripts/06_dbd_input.sql:/docker-entrypoint-initdb.d/06_dbd_input.sql
+          # copy the sql script to apply roles
+          - ./scripts/07_dbd_roles.sql:/docker-entrypoint-initdb.d/07_dbd_roles.sql

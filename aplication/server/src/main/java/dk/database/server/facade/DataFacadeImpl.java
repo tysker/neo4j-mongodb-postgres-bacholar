@@ -1,8 +1,6 @@
 package dk.database.server.facade;
 
-import dk.database.server.domain.KeywordCreation;
-import dk.database.server.domain.StockCreation;
-import dk.database.server.domain.UserCreation;
+import dk.database.server.domain.*;
 import dk.database.server.entities.Keyword;
 import dk.database.server.entities.Stock;
 import dk.database.server.entities.User;
@@ -42,6 +40,16 @@ public class DataFacadeImpl implements DataFacade {
     @Override
     public User addUser(UserCreation userCreation) throws SQLException, ClassNotFoundException {
         return userService.addUser(userCreation);
+    }
+
+    @Override
+    public boolean applyStock(UserStockCreation userStockCreation) throws SQLException, ClassNotFoundException {
+        return userService.applyStock(userStockCreation);
+    }
+
+    @Override
+    public boolean applyKeyword(UserKeywordCreation userKeywordCreation) throws SQLException, ClassNotFoundException {
+        return userService.applyKeyword(userKeywordCreation);
     }
 
     @Override

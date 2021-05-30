@@ -13,8 +13,8 @@ public class DBConnection {
         Connection connection = null;
         Class.forName("org.postgresql.Driver");
         String URL = "jdbc:postgresql://localhost:5438/postgres";
-        String USER = "postgres";
-        String PASSWORD = "postgres";
+        String USER = "dao";
+        String PASSWORD = "dao";
 
         connection = DriverManager.getConnection(URL, USER, PASSWORD);
         return connection;

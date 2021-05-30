@@ -1,6 +1,8 @@
 package dk.database.server.controller;
 
 import dk.database.server.domain.UserCreation;
+import dk.database.server.domain.UserKeywordCreation;
+import dk.database.server.domain.UserStockCreation;
 import dk.database.server.entities.User;
 import dk.database.server.entities.UserKeyword;
 import dk.database.server.facade.DataFacadeImpl;
@@ -72,6 +74,32 @@ public class UserController {
                 .created(uri)
                 .status(Response.Status.OK)
                 .entity(user)
+                .build();
+    }
+
+    @Path("/stock")
+    @POST
+    public Response applyStock(@RequestBody UserStockCreation userStockCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
+        Boolean ditInsert = data.applyStock(userStockCreation);
+        URI uri = uriInfo.getAbsolutePathBuilder()
+                .build();
+        return Response
+                .created(uri)
+                .status(Response.Status.OK)
+                .entity(ditInsert)
+                .build();
+    }
+
+    @Path("/keyword")
+    @POST
+    public Response applyKeyword(@RequestBody UserKeywordCreation userKeywordCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
+        Boolean ditInsert = data.applyKeyword(userKeywordCreation);
+        URI uri = uriInfo.getAbsolutePathBuilder()
+                .build();
+        return Response
+                .created(uri)
+                .status(Response.Status.OK)
+                .entity(ditInsert)
                 .build();
     }
 

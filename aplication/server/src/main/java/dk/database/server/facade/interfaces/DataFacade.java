@@ -1,8 +1,6 @@
 package dk.database.server.facade.interfaces;
 
-import dk.database.server.domain.KeywordCreation;
-import dk.database.server.domain.StockCreation;
-import dk.database.server.domain.UserCreation;
+import dk.database.server.domain.*;
 import dk.database.server.entities.Keyword;
 import dk.database.server.entities.Stock;
 import dk.database.server.entities.User;
@@ -18,6 +16,8 @@ public interface DataFacade {
     User getUserById(int userId) throws SQLException, ClassNotFoundException;
     UserKeyword getUserKeyword(int userId) throws SQLException, ClassNotFoundException;
     User addUser(UserCreation userCreation) throws SQLException, ClassNotFoundException;
+    boolean applyStock(UserStockCreation userStockCreation) throws SQLException, ClassNotFoundException;
+    boolean applyKeyword(UserKeywordCreation userKeywordCreation) throws SQLException, ClassNotFoundException;
 
     //Keywords
     Map<Integer, Keyword> getAllKeywords() throws SQLException, ClassNotFoundException ;

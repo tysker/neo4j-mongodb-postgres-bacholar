@@ -16,6 +16,6 @@ public interface UserService {
     User getUserById(int userId) throws SQLException, ClassNotFoundException;
     UserKeyword getUserKeyword(int userId) throws SQLException, ClassNotFoundException;
     User addUser(UserCreation user) throws SQLException, ClassNotFoundException;
-    void addUserStock(UserStockCreation userStockCreation) throws SQLException, ClassNotFoundException;
-    void addUserKeyword(UserKeywordCreation userKeywordCreation) throws SQLException, ClassNotFoundException;
+    boolean applyStock(UserStockCreation userStockCreation) throws SQLException, ClassNotFoundException;
+    boolean applyKeyword(UserKeywordCreation userKeywordCreation) throws SQLException, ClassNotFoundException;
 }
