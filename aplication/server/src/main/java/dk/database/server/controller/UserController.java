@@ -5,16 +5,13 @@ import dk.database.server.domain.UserKeywordCreation;
 import dk.database.server.domain.UserStockCreation;
 import dk.database.server.entities.User;
 import dk.database.server.entities.UserKeyword;
+import dk.database.server.exceptions.dataconflict.DataConflictException;
+import dk.database.server.exceptions.datanotfound.DataNotFoundException;
 import dk.database.server.facade.DataFacadeImpl;
-import dk.database.server.service.UserServiceImpl;
-import dk.database.server.service.interfaces.UserService;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.*;
 import java.net.URI;
 import java.sql.SQLException;
 import java.util.Map;
@@ -30,6 +27,12 @@ public class UserController {
     @GET
     public Response getAllUsers(@Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Map<Integer, User> users = data.getAllUsers();
+
+        if(users == null)
+        {
+            throw new DataNotFoundException("Sorry, we were not able to handle your request.");
+        }
+
         URI uri = uriInfo.getAbsolutePathBuilder().build();
         return Response
                 .created(uri)
@@ -42,6 +45,12 @@ public class UserController {
     @GET
     public Response getUserById(@PathParam("userId") int userid, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         User user = data.getUserById(userid);
+
+        if(user == null)
+        {
+            throw new DataNotFoundException("Sorry, we were not able to handle your request. User with id " + userid + " can't be found in our system. ");
+        }
+
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
@@ -55,6 +64,12 @@ public class UserController {
     @GET
     public Response getUserKeyword(@PathParam("userId") int userid, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         UserKeyword user = data.getUserKeyword(userid);
+
+        if(user == null)
+        {
+            throw new DataNotFoundException("Sorry, we were not able to handle your request. User with id " + userid + " can't be found in our system.");
+        }
+
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
@@ -67,12 +82,18 @@ public class UserController {
     @Path("/")
     @POST
     public Response addUser(@RequestBody UserCreation userCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
-        User user = data.addUser(userCreation);
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
+        User user = data.addUser(userCreation);
+
+        if(user == null )
+        {
+            throw new DataConflictException("Sorry, we were not able to handle your request. " + userCreation.getUserName() + " can not be added.");
+        }
+
         return Response
                 .created(uri)
-                .status(Response.Status.OK)
+                .status(Response.Status.CREATED)
                 .entity(user)
                 .build();
     }
@@ -81,11 +102,17 @@ public class UserController {
     @POST
     public Response applyStock(@RequestBody UserStockCreation userStockCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Boolean ditInsert = data.applyStock(userStockCreation);
+
+        if(!ditInsert)
+        {
+            throw new DataConflictException("Sorry, we were not able to handle your request. " + userStockCreation.getStockName() + " can not be added.");
+        }
+
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
                 .created(uri)
-                .status(Response.Status.OK)
+                .status(Response.Status.CREATED)
                 .entity(ditInsert)
                 .build();
     }
@@ -94,11 +121,17 @@ public class UserController {
     @POST
     public Response applyKeyword(@RequestBody UserKeywordCreation userKeywordCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Boolean ditInsert = data.applyKeyword(userKeywordCreation);
+
+        if(!ditInsert)
+        {
+            throw new DataConflictException("Sorry, we were not able to handle your request. " + userKeywordCreation.getKeywordName() + " can not be added.");
+        }
+
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
                 .created(uri)
-                .status(Response.Status.OK)
+                .status(Response.Status.CREATED)
                 .entity(ditInsert)
                 .build();
     }
