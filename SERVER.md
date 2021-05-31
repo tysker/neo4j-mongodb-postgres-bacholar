@@ -16,4 +16,5 @@ Detailed information about the endpoints are available on the link below.
 
 ## Server structure
 
+
 ***
