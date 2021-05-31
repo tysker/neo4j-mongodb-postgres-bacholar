@@ -22,6 +22,7 @@ width="40%"
 ***
 
 * [**Java Server documentation**](SERVER.md)
+* [**Postgres documentation**](POSTGRES.md)
 * [**MongoDB documentation**](MONGODB.md)
 * [**Neo4j documentation**](NEO4J.md)
 
