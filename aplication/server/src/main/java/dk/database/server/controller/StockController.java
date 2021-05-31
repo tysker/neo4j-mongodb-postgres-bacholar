@@ -2,6 +2,8 @@ package dk.database.server.controller;
 
 import dk.database.server.domain.StockCreation;
 import dk.database.server.entities.Stock;
+import dk.database.server.exceptions.dataconflict.DataConflictException;
+import dk.database.server.exceptions.datanotfound.DataNotFoundException;
 import dk.database.server.facade.DataFacadeImpl;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -32,6 +34,12 @@ public class StockController {
     @GET
     public Response getAllStocks(@Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Map<Integer, Stock> stocks = data.getAllStocks();
+
+        if(stocks == null)
+        {
+            throw new DataNotFoundException("Sorry, we were not able to handle your request.");
+        }
+
         URI uri = uriInfo.getAbsolutePathBuilder().build();
         return Response
                 .created(uri)
@@ -50,8 +58,15 @@ public class StockController {
      */
     @Path("/{stockId}")
     @GET
-    public Response getStockById(@PathParam("stockId") int stockId, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
+    public Response getStockById(
+            @PathParam("stockId") int stockId, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Stock stock = data.getStockById(stockId);
+
+        if(stock == null)
+        {
+            throw new DataNotFoundException("Sorry, we were not able to handle your request. Stock with id " + stockId + " can't be found in our system. ");
+        }
+
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
@@ -74,11 +89,17 @@ public class StockController {
     @POST
     public Response addStock(@RequestBody StockCreation stockCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Stock _stock = data.addStock(stockCreation);
+
+        if(_stock == null )
+        {
+            throw new DataConflictException("Sorry, we were not able to handle your request. " + stockCreation.getStockName() + " can not be added.");
+        }
+
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
                 .created(uri)
-                .status(Response.Status.OK)
+                .status(Response.Status.CREATED)
                 .entity(_stock)
                 .build();
     }
