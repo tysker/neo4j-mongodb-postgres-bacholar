@@ -21,7 +21,7 @@ width="40%"
 
 ***
 
-### Installation Instruction
+### Installation Instructions
 
 ***
 
