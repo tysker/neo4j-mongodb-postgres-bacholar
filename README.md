@@ -21,6 +21,10 @@ width="40%"
 
 ***
 
+### Installation Instructions
+
+***
+
 * [**Java Server documentation**](SERVER.md)
 * [**Postgres documentation**](POSTGRES.md)
 * [**MongoDB documentation**](MONGODB.md)
