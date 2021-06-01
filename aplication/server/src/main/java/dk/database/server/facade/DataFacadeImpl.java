@@ -70,8 +70,8 @@ public class DataFacadeImpl implements DataFacade {
     }
 
     @Override
-    public UserStockKeyword getKeywordByUserIdAndStockName() throws SQLException, ClassNotFoundException {
-        return keywordService.getKeywordByUserIdAndStockName();
+    public UserStockKeyword getKeywordByUserIdAndStockName(int userId, String stockName) throws SQLException, ClassNotFoundException {
+        return keywordService.getKeywordByUserIdAndStockName(userId, stockName);
     }
 
     @Override

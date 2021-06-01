@@ -1,7 +1,6 @@
 package dk.database.server.controller;
 
 import dk.database.server.domain.KeywordCreation;
-import dk.database.server.domain.UserStockCreation;
 import dk.database.server.entities.Keyword;
 import dk.database.server.entities.UserStockKeyword;
 import dk.database.server.facade.DataFacadeImpl;
@@ -71,7 +70,7 @@ public class KeywordController {
             @PathParam("stockName") String stockName,
             @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
 
-        UserStockKeyword userStockKeyword = data.getKeywordByUserIdAndStockName();
+        UserStockKeyword userStockKeyword = data.getKeywordByUserIdAndStockName(userId, stockName);
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response

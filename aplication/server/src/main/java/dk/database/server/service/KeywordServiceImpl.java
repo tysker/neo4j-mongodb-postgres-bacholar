@@ -4,11 +4,14 @@ import dk.database.server.config.DBConnection;
 import dk.database.server.domain.KeywordCreation;
 import dk.database.server.entities.Keyword;
 import dk.database.server.entities.Stock;
+import dk.database.server.entities.User;
 import dk.database.server.entities.UserStockKeyword;
 import dk.database.server.service.interfaces.KeywordService;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class KeywordServiceImpl implements KeywordService {
@@ -103,7 +106,55 @@ public class KeywordServiceImpl implements KeywordService {
     }
 
     @Override
-    public UserStockKeyword getKeywordByUserIdAndStockName() throws SQLException, ClassNotFoundException {
-        return null;
+    public UserStockKeyword getKeywordByUserIdAndStockName(int userId, String stockName) throws SQLException, ClassNotFoundException {
+        User user = null;
+        Stock stock = null;
+
+        try(Connection connection = db.connect()) {
+
+            String sql = "SELECT * FROM users WHERE id = ?";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, userId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    int id = rs.getInt("id");
+                    String username = rs.getString("username");
+                    String email = rs.getString("email");
+                    String password = rs.getString("pwd");
+                    user = new User(id, username, email, password);
+                }
+            }
+        }
+
+        try(Connection connection = db.connect()) {
+            String sql = "SELECT * FROM stocks WHERE stockname = ?";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, stockName);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    int id = rs.getInt("id");
+                    String stockname = rs.getString("stockname");
+                    stock = new Stock(id, stockname);
+                }
+            }
+        }
+
+        try(Connection connection = db.connect()) {
+            String sql = "SELECT * FROM view_users_keywords_stocks WHERE user_id = ? AND stockname = ?";
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, userId);
+                ps.setString(2, stockName);
+                ResultSet rs = ps.executeQuery();
+                List<Keyword> keywordList = new ArrayList<>();
+                if(rs.next())
+                {
+                    int id = rs.getInt("keyword_id");
+                    String key = rs.getString("keyword");
+                    keywordList.add(new Keyword(id, key));
+                }
+                return new UserStockKeyword(user, stock, keywordList);
+            }
+        }
     }
 }

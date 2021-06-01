@@ -12,5 +12,5 @@ public interface KeywordService {
     Map<Integer,Keyword> getAllKeywords() throws SQLException, ClassNotFoundException;
     Keyword getKeywordById(int keywordId) throws SQLException, ClassNotFoundException;
     Keyword addKeyword(KeywordCreation keywordCreation) throws SQLException, ClassNotFoundException;
-    UserStockKeyword getKeywordByUserIdAndStockName() throws SQLException, ClassNotFoundException;
+    UserStockKeyword getKeywordByUserIdAndStockName(int userId, String stockName) throws SQLException, ClassNotFoundException;
 }
