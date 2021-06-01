@@ -1,9 +1,10 @@
 package dk.database.server.controller;
 
 import dk.database.server.domain.KeywordCreation;
-import dk.database.server.domain.UserStockCreation;
 import dk.database.server.entities.Keyword;
 import dk.database.server.entities.UserStockKeyword;
+import dk.database.server.exceptions.dataconflict.DataConflictException;
+import dk.database.server.exceptions.datanotfound.DataNotFoundException;
 import dk.database.server.facade.DataFacadeImpl;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -34,6 +35,12 @@ public class KeywordController {
     @GET
     public Response getAllKeywords(@Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Map<Integer, Keyword> keywords = data.getAllKeywords();
+
+        if(keywords == null)
+        {
+            throw new DataNotFoundException("Sorry, we were not able to handle your request.");
+        }
+
         URI uri = uriInfo.getAbsolutePathBuilder().build();
         return Response
                 .created(uri)
@@ -54,6 +61,12 @@ public class KeywordController {
     @GET
     public Response getKeywordById(@PathParam("keywordId") int keywordId, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Keyword keyword = data.getKeywordById(keywordId);
+
+        if(keyword == null)
+        {
+            throw new DataNotFoundException("Sorry, we were not able to handle your request. Keyword with id " + keywordId + " can't be found in our system. ");
+        }
+
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
@@ -94,11 +107,17 @@ public class KeywordController {
     @POST
     public Response addKeyword(@RequestBody KeywordCreation keywordCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Keyword keyword = data.addKeyword(keywordCreation);
+
+        if(keyword == null )
+        {
+            throw new DataConflictException("Sorry, we were not able to handle your request. " + keywordCreation.getKeyword() + " can not be added.");
+        }
+
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
                 .created(uri)
-                .status(Response.Status.OK)
+                .status(Response.Status.CREATED)
                 .entity(keyword)
                 .build();
     }
