@@ -5,9 +5,9 @@
 
 **Authors:**
 
-* Claus Kramath,
-* Morten Feldt,
-* Mads Wulff,
+* Claus Kramath, cph-ck83@cphbusiness.dk
+* Morten Feldt, cph-mf227@cphbusiness.dk
+* Mads Wulff, cph-mn492@cphbusiness.dk
 * Jörg Oertel, cph-jo130@cphbusiness.dk
 
 *** 
