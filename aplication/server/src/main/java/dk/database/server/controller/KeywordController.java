@@ -2,11 +2,8 @@ package dk.database.server.controller;
 
 import dk.database.server.domain.KeywordCreation;
 import dk.database.server.entities.Keyword;
-<<<<<<< HEAD
-=======
 import dk.database.server.exceptions.dataconflict.DataConflictException;
 import dk.database.server.exceptions.datanotfound.DataNotFoundException;
->>>>>>> server
 import dk.database.server.facade.DataFacadeImpl;
 import org.springframework.web.bind.annotation.RequestBody;
 

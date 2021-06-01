@@ -15,7 +15,7 @@ public class StockServiceImpl implements StockService {
 
     /**
      *
-     * @return Map</Integer,Stock>
+     * @return Map<Integer,Stock>
      * @throws SQLException
      * @throws ClassNotFoundException
      */

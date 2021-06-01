@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      *
-     * @return Map</Integer, User>
+     * @return Map<Integer,User>
      * @throws SQLException
      * @throws ClassNotFoundException
      */

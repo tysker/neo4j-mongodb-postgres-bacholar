@@ -46,7 +46,7 @@ public class KeywordServiceImpl implements KeywordService {
 
     /**
      *
-     * @param keywordId
+     * @param keywordId keyword id
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException

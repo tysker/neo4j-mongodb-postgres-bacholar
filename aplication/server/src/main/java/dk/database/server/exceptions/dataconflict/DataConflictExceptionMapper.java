@@ -7,6 +7,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
+/**
+ * DataConflictExceptionMapper
+ */
 @Provider
 public class DataConflictExceptionMapper implements ExceptionMapper<DataConflictException> {
     @Override
