@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>674af25e-0b3f-46a1-bad4-d07c00a6c03e.DATABASE:postgres</OriginalElement>
+  <nodes>
+    <node x="580.5391949174465" y="362.77414523815946">674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users</node>
+    <node x="263.0" y="1013.7184903568918">674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.log_stocks</node>
+    <node x="250.32230409917184" y="138.58031433135295">674af25e-0b3f-46a1-bad4-d07c00a6c03e.VIEW:postgres.public.view_users_stocks</node>
+    <node x="876.1460558375104" y="577.7858622331787">674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users_keywords</node>
+    <node x="925.6333523477203" y="187.2485509323888">674af25e-0b3f-46a1-bad4-d07c00a6c03e.VIEW:postgres.public.view_users_keywords</node>
+    <node x="1212.0554173371675" y="120.36788121402304">674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.keywords</node>
+    <node x="0.0" y="31.841637777392975">674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.stocks</node>
+    <node x="584.6603862585893" y="0.0">674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users_keywords_stocks</node>
+    <node x="484.0756733214768" y="740.718490356892">674af25e-0b3f-46a1-bad4-d07c00a6c03e.VIEW:postgres.public.view_users_keywords_stocks</node>
+    <node x="294.80444747766245" y="511.50496158099355">674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users_stocks</node>
+    <node x="526.0" y="1013.7184903568918">674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.log_keywords</node>
+    <node x="0.0" y="1013.7184903568918">674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.log_users</node>
+    <node x="789.0" y="1013.7184903568918">674af25e-0b3f-46a1-bad4-d07c00a6c03e.VIEW:postgres.public.view_users</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.VIEW:postgres.public.view_users_keywords_stocks" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.VIEW:postgres.public.view_users_stocks" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.stocks" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users_keywords_stocks" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.keywords" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="693.0" y="92.0" />
+      <point x="693.0" y="92.0" />
+      <point x="691.0" y="201.0" />
+      <point x="691.0" y="201.0" />
+      <point x="697.0" y="251.0" />
+      <point x="697.0" y="251.0" />
+      <point x="703.0" y="274.0" />
+      <point x="703.0" y="274.0" />
+      <point x="712.0" y="295.0" />
+      <point x="712.0" y="295.0" />
+      <point x="723.0" y="313.0" />
+      <point x="723.0" y="313.0" />
+      <point x="738.0" y="326.0" />
+      <point x="738.0" y="326.0" />
+      <point x="756.0" y="335.0" />
+      <point x="756.0" y="335.0" />
+      <point x="777.0" y="339.0" />
+      <point x="777.0" y="339.0" />
+      <point x="801.0" y="339.0" />
+      <point x="801.0" y="339.0" />
+      <point x="827.0" y="336.0" />
+      <point x="827.0" y="336.0" />
+      <point x="886.0" y="322.0" />
+      <point x="886.0" y="322.0" />
+      <point x="948.0" y="301.0" />
+      <point x="948.0" y="301.0" />
+      <point x="1131.0" y="231.0" />
+      <point x="1131.0" y="231.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users_stocks" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.VIEW:postgres.public.view_users_keywords" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.keywords" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.VIEW:postgres.public.view_users_stocks" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users_keywords_stocks" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.VIEW:postgres.public.view_users_keywords" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.VIEW:postgres.public.view_users_keywords_stocks" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.keywords" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="631.0" y="761.0" />
+      <point x="631.0" y="761.0" />
+      <point x="640.0" y="708.0" />
+      <point x="640.0" y="708.0" />
+      <point x="653.0" y="647.0" />
+      <point x="653.0" y="647.0" />
+      <point x="663.0" y="615.0" />
+      <point x="663.0" y="615.0" />
+      <point x="687.0" y="551.0" />
+      <point x="687.0" y="551.0" />
+      <point x="703.0" y="521.0" />
+      <point x="703.0" y="521.0" />
+      <point x="722.0" y="493.0" />
+      <point x="722.0" y="493.0" />
+      <point x="743.0" y="467.0" />
+      <point x="743.0" y="467.0" />
+      <point x="767.0" y="444.0" />
+      <point x="767.0" y="444.0" />
+      <point x="793.0" y="423.0" />
+      <point x="793.0" y="423.0" />
+      <point x="821.0" y="403.0" />
+      <point x="821.0" y="403.0" />
+      <point x="881.0" y="369.0" />
+      <point x="881.0" y="369.0" />
+      <point x="945.0" y="338.0" />
+      <point x="945.0" y="338.0" />
+      <point x="1101.0" y="268.0" />
+      <point x="1101.0" y="268.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.VIEW:postgres.public.view_users_keywords_stocks" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.stocks" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="637.0" y="708.0" />
+      <point x="637.0" y="708.0" />
+      <point x="640.0" y="646.0" />
+      <point x="640.0" y="646.0" />
+      <point x="637.0" y="580.0" />
+      <point x="637.0" y="580.0" />
+      <point x="632.0" y="547.0" />
+      <point x="632.0" y="547.0" />
+      <point x="624.0" y="516.0" />
+      <point x="624.0" y="516.0" />
+      <point x="613.0" y="485.0" />
+      <point x="613.0" y="485.0" />
+      <point x="599.0" y="457.0" />
+      <point x="599.0" y="457.0" />
+      <point x="582.0" y="431.0" />
+      <point x="582.0" y="431.0" />
+      <point x="561.0" y="406.0" />
+      <point x="561.0" y="406.0" />
+      <point x="539.0" y="383.0" />
+      <point x="539.0" y="383.0" />
+      <point x="514.0" y="361.0" />
+      <point x="514.0" y="361.0" />
+      <point x="461.0" y="321.0" />
+      <point x="461.0" y="321.0" />
+      <point x="267.0" y="192.0" />
+      <point x="267.0" y="192.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users_stocks" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.stocks" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="447.0" y="516.0" />
+      <point x="447.0" y="516.0" />
+      <point x="486.0" y="498.0" />
+      <point x="486.0" y="498.0" />
+      <point x="523.0" y="476.0" />
+      <point x="523.0" y="476.0" />
+      <point x="538.0" y="464.0" />
+      <point x="538.0" y="464.0" />
+      <point x="550.0" y="451.0" />
+      <point x="550.0" y="451.0" />
+      <point x="557.0" y="437.0" />
+      <point x="557.0" y="437.0" />
+      <point x="560.0" y="423.0" />
+      <point x="560.0" y="423.0" />
+      <point x="557.0" y="407.0" />
+      <point x="557.0" y="407.0" />
+      <point x="548.0" y="391.0" />
+      <point x="548.0" y="391.0" />
+      <point x="535.0" y="375.0" />
+      <point x="535.0" y="375.0" />
+      <point x="497.0" y="341.0" />
+      <point x="497.0" y="341.0" />
+      <point x="473.0" y="323.0" />
+      <point x="473.0" y="323.0" />
+      <point x="393.0" y="269.0" />
+      <point x="393.0" y="269.0" />
+      <point x="285.0" y="200.0" />
+      <point x="285.0" y="200.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users_keywords" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users_keywords" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.keywords" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="911.0" y="585.0" />
+      <point x="911.0" y="585.0" />
+      <point x="846.0" y="538.0" />
+      <point x="846.0" y="538.0" />
+      <point x="815.0" y="508.0" />
+      <point x="815.0" y="508.0" />
+      <point x="803.0" y="492.0" />
+      <point x="803.0" y="492.0" />
+      <point x="795.0" y="476.0" />
+      <point x="795.0" y="476.0" />
+      <point x="791.0" y="460.0" />
+      <point x="791.0" y="460.0" />
+      <point x="792.0" y="444.0" />
+      <point x="792.0" y="444.0" />
+      <point x="799.0" y="429.0" />
+      <point x="799.0" y="429.0" />
+      <point x="811.0" y="413.0" />
+      <point x="811.0" y="413.0" />
+      <point x="828.0" y="398.0" />
+      <point x="828.0" y="398.0" />
+      <point x="849.0" y="384.0" />
+      <point x="849.0" y="384.0" />
+      <point x="901.0" y="355.0" />
+      <point x="901.0" y="355.0" />
+      <point x="1189.0" y="225.0" />
+      <point x="1189.0" y="225.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.users_keywords_stocks" target="674af25e-0b3f-46a1-bad4-d07c00a6c03e.TABLE:postgres.public.stocks" relationship="REFERENCES">
+      <point x="0.0" y="0.0" />
+      <point x="688.0" y="175.0" />
+      <point x="688.0" y="175.0" />
+      <point x="680.0" y="225.0" />
+      <point x="680.0" y="225.0" />
+      <point x="674.0" y="249.0" />
+      <point x="674.0" y="249.0" />
+      <point x="666.0" y="272.0" />
+      <point x="666.0" y="272.0" />
+      <point x="656.0" y="291.0" />
+      <point x="656.0" y="291.0" />
+      <point x="644.0" y="307.0" />
+      <point x="644.0" y="307.0" />
+      <point x="629.0" y="319.0" />
+      <point x="629.0" y="319.0" />
+      <point x="612.0" y="325.0" />
+      <point x="612.0" y="325.0" />
+      <point x="592.0" y="326.0" />
+      <point x="592.0" y="326.0" />
+      <point x="569.0" y="323.0" />
+      <point x="569.0" y="323.0" />
+      <point x="545.0" y="316.0" />
+      <point x="545.0" y="316.0" />
+      <point x="493.0" y="294.0" />
+      <point x="493.0" y="294.0" />
+      <point x="436.0" y="264.0" />
+      <point x="436.0" y="264.0" />
+      <point x="245.0" y="155.0" />
+      <point x="245.0" y="155.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Balloons" zoom="0.7287993282955499" showDependencies="false" x="698.5" y="585.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

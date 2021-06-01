@@ -1,9 +1,9 @@
-# Database project:
+# Database projekt:
 
-**Date: 02-juni-2021**
+**Dato: 02-juni-2021**
 
 
-**Authors:**
+**Studerende:**
 
 * Claus Kramath,
 * Morten Feldt,
@@ -22,6 +22,28 @@ width="40%"
 ***
 
 ### Installation Instructions
+
+### Run postgres with help of Docker
+
+We choose a postgres docker image, for easy deployment. Inside the docker-compose file, under volumes, we tell docker to copy variuos sql scripts into the docker-container. Docker runs the scripts in an alphabetically order, and therefore we have controll over which script is going to be executed first and which one last.
+
+To run the docker-compose file, that can be done in two ways. Either in Intellij or otherwise in a bash terminal.
+
+ open a terminal on docker-compose and write:
+
+```
+docker-compose up
+```
+
+**Remember to change the port number from 5432 to 5438!**
+
+<img 
+src="./images/docker_compose.png" 
+alt="docker-compose file"
+style="height: 70%; width:70%;"
+/>
+
+***
 
 ***
 
