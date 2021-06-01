@@ -21,15 +21,23 @@ width="40%"
 
 ***
 
-### Installation Instructions
+## Installations instruktioner
 
-### Run postgres with help of Docker
+### Kør Postgres, MangoDB og Neo4j med hjælp af Docker
 
-We choose a postgres docker image, for easy deployment. Inside the docker-compose file, under volumes, we tell docker to copy variuos sql scripts into the docker-container. Docker runs the scripts in an alphabetically order, and therefore we have controll over which script is going to be executed first and which one last.
+For alle tre databaser, valgte vi at oprette en docker-compose-fil for nem implementering.
+Vores docker-compose-fil kan køres enten i en bash-terminal eller i Intellij. 
 
-To run the docker-compose file, that can be done in two ways. Either in Intellij or otherwise in a bash terminal.
+1.  **Ind i Intellij:**
 
- open a terminal on docker-compose and write:
+<img 
+src="./images/rundocker.png" 
+alt="docker Intellij file"
+style="height: 70%; width:70%;"
+/>
+
+2. **Ind i bash terminalen:**
+
 
 ```
 docker-compose up
@@ -43,34 +51,19 @@ alt="docker-compose file"
 style="height: 70%; width:70%;"
 />
 
-***
+
+Inside the docker-compose file, under volumes, we tell docker to copy variuos sql scripts into the docker-container. Docker runs the scripts in an alphabetically order, and therefore we have controll over which script is going to be executed first and which one last.
+
 
 ***
 
-* [**Java Server documentation**](SERVER.md)
-* [**Postgres documentation**](POSTGRES.md)
-* [**MongoDB documentation**](MONGODB.md)
-* [**Neo4j documentation**](NEO4J.md)
+## Dokumentation
+
+* [**Java Server dokumentation**](SERVER.md)
+* [**Postgres dokumentation**](POSTGRES.md)
+* [**MongoDB dokumentation**](MONGODB.md)
+* [**Neo4j dokumentation**](NEO4J.md)
 
 ***
 
-Data:
-- Artikler
-- User relation
-
-Functions:
-- graph queries
-- cluster, replica (horizontal scaling)
-
-**Postgres:**
-- Docker?
-Data: 
-- User (username, password, search history)
-- Aktie tabel
-- Søgeord
-
-Functions:
-- grant users, trigger, stored procedures, view
-
-**Server:**
 
