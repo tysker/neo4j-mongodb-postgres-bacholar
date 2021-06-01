@@ -1,5 +1,8 @@
 package dk.database.server.facade;
 
+import dk.ckmwn.contract.StorageManagement;
+import dk.ckmwn.dto.Article;
+import dk.ckmwn.impl.StorageManagementImpl;
 import dk.database.server.domain.*;
 import dk.database.server.entities.*;
 import dk.database.server.facade.interfaces.DataFacade;
@@ -11,6 +14,7 @@ import dk.database.server.service.interfaces.StockService;
 import dk.database.server.service.interfaces.UserService;
 
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.Map;
 
 public class DataFacadeImpl implements DataFacade {
@@ -18,6 +22,7 @@ public class DataFacadeImpl implements DataFacade {
     private final UserService userService = new UserServiceImpl();
     private final KeywordService keywordService = new KeywordServiceImpl();
     private final StockService stockService = new StockServiceImpl();
+    private final StorageManagement storageManagement = new StorageManagementImpl();
 
     @Override
     public Map<Integer, User> getAllUsers() throws SQLException, ClassNotFoundException {
@@ -86,6 +91,25 @@ public class DataFacadeImpl implements DataFacade {
 
     @Override
     public Stock addStock(StockCreation stockCreation) throws SQLException, ClassNotFoundException {
-        return stockService.addStock(stockCreation);
+        boolean created = storageManagement.createStock(new dk.ckmwn.dto.Stock(stockCreation.getStockName()));
+        if(created) {
+            return stockService.addStock(stockCreation);
+        }
+        return null;
+    }
+
+    @Override
+    public Collection<dk.ckmwn.dto.Keyword> suggestKeywordsForStock(dk.ckmwn.dto.Stock stock, int width) {
+        return storageManagement.suggestKeywordsForStock(stock, width);
+    }
+
+    @Override
+    public boolean createArticle(Article article) {
+        return storageManagement.createArticle(article);
+    }
+
+    @Override
+    public Article getArticle(String id) {
+        return storageManagement.getArticle(id);
     }
 }
