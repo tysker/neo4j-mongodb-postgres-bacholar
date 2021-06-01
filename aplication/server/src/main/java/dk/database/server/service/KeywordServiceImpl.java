@@ -4,6 +4,7 @@ import dk.database.server.config.DBConnection;
 import dk.database.server.domain.KeywordCreation;
 import dk.database.server.entities.Keyword;
 import dk.database.server.entities.Stock;
+import dk.database.server.entities.UserStockKeyword;
 import dk.database.server.service.interfaces.KeywordService;
 
 import java.sql.*;
@@ -99,5 +100,10 @@ public class KeywordServiceImpl implements KeywordService {
                 return keyword;
             }
         }
+    }
+
+    @Override
+    public UserStockKeyword getKeywordByUserIdAndStockName() throws SQLException, ClassNotFoundException {
+        return null;
     }
 }

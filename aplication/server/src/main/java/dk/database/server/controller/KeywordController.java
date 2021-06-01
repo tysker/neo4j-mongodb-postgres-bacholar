@@ -1,7 +1,9 @@
 package dk.database.server.controller;
 
 import dk.database.server.domain.KeywordCreation;
+import dk.database.server.domain.UserStockCreation;
 import dk.database.server.entities.Keyword;
+import dk.database.server.entities.UserStockKeyword;
 import dk.database.server.facade.DataFacadeImpl;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -59,6 +61,24 @@ public class KeywordController {
                 .type(MediaType.APPLICATION_JSON_TYPE)
                 .status(Response.Status.OK)
                 .entity(keyword)
+                .build();
+    }
+
+    @Path("/{userId}/stocks/{stockName}")
+    @GET
+    public Response getKeywordByUserIdAndStockName(
+            @PathParam("userId") int userId,
+            @PathParam("stockName") String stockName,
+            @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
+
+        UserStockKeyword userStockKeyword = data.getKeywordByUserIdAndStockName();
+        URI uri = uriInfo.getAbsolutePathBuilder()
+                .build();
+        return Response
+                .created(uri)
+                .type(MediaType.APPLICATION_JSON_TYPE)
+                .status(Response.Status.OK)
+                .entity(userStockKeyword)
                 .build();
     }
 

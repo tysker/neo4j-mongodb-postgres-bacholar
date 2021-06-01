@@ -188,4 +188,24 @@ public class UserServiceImpl implements UserService {
             }
         }
     }
+
+    @Override
+    public boolean applyUserKeywordsStock(int userId, String keywordId, String stockId) throws SQLException, ClassNotFoundException {
+                try(Connection connection = db.connect())
+        {
+            String sql = "{? = call apply_keyword_stock(?, ?, ?)}";
+
+            try (CallableStatement stmt= connection.prepareCall(sql))
+            {
+                stmt.setInt(2, userId);
+                stmt.setString(3, keywordId);
+                stmt.setString(4, stockId);
+                stmt.registerOutParameter(1,Types.BOOLEAN);
+                stmt.execute();
+
+                boolean didInsert = stmt.getBoolean(1);
+                return didInsert;
+            }
+        }
+    }
 }

@@ -18,4 +18,5 @@ public interface UserService {
     User addUser(UserCreation user) throws SQLException, ClassNotFoundException;
     boolean applyStock(UserStockCreation userStockCreation) throws SQLException, ClassNotFoundException;
     boolean applyKeyword(UserKeywordCreation userKeywordCreation) throws SQLException, ClassNotFoundException;
+    boolean applyUserKeywordsStock(int userId, String keywordId, String stockId) throws SQLException, ClassNotFoundException;
 }

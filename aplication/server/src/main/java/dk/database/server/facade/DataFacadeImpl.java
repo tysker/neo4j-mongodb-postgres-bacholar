@@ -1,10 +1,7 @@
 package dk.database.server.facade;
 
 import dk.database.server.domain.*;
-import dk.database.server.entities.Keyword;
-import dk.database.server.entities.Stock;
-import dk.database.server.entities.User;
-import dk.database.server.entities.UserKeyword;
+import dk.database.server.entities.*;
 import dk.database.server.facade.interfaces.DataFacade;
 import dk.database.server.service.KeywordServiceImpl;
 import dk.database.server.service.StockServiceImpl;
@@ -53,6 +50,11 @@ public class DataFacadeImpl implements DataFacade {
     }
 
     @Override
+    public boolean applyUserKeywordsStock(int userId, String keywordId, String stockId) throws SQLException, ClassNotFoundException {
+        return userService.applyUserKeywordsStock(userId, keywordId, stockId);
+    }
+
+    @Override
     public Map<Integer, Keyword> getAllKeywords() throws SQLException, ClassNotFoundException {
         return keywordService.getAllKeywords();
     }
@@ -65,6 +67,11 @@ public class DataFacadeImpl implements DataFacade {
     @Override
     public Keyword addKeyword(KeywordCreation keywordCreation) throws SQLException, ClassNotFoundException {
         return keywordService.addKeyword(keywordCreation);
+    }
+
+    @Override
+    public UserStockKeyword getKeywordByUserIdAndStockName() throws SQLException, ClassNotFoundException {
+        return keywordService.getKeywordByUserIdAndStockName();
     }
 
     @Override

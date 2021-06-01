@@ -116,7 +116,7 @@ public class UserController {
      */
     @Path("/stock")
     @POST
-    public Response applyStock(@RequestBody UserStockCreation userStockCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
+    public Response applyUserStock(@RequestBody UserStockCreation userStockCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Boolean ditInsert = data.applyStock(userStockCreation);
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
@@ -131,14 +131,43 @@ public class UserController {
      *
      * @param userKeywordCreation
      * @param uriInfo returns url path in header
-     * @return
+     * @return boolean
      * @throws SQLException
      * @throws ClassNotFoundException
      */
     @Path("/keyword")
     @POST
-    public Response applyKeyword(@RequestBody UserKeywordCreation userKeywordCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
+    public Response applyUserKeyword(@RequestBody UserKeywordCreation userKeywordCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Boolean ditInsert = data.applyKeyword(userKeywordCreation);
+        URI uri = uriInfo.getAbsolutePathBuilder()
+                .build();
+        return Response
+                .created(uri)
+                .status(Response.Status.OK)
+                .entity(ditInsert)
+                .build();
+    }
+
+
+    /**
+     * 
+     * @param userId
+     * @param keywordId
+     * @param stockId
+     * @param uriInfo
+     * @return boolean
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    @Path("/user/{userId}/keyword/{keywordId}/stock/{stockId}")
+    @POST
+    public Response applyUserKeywordStock(
+            @PathParam("userId") int userId,
+            @PathParam("keywordId") String keywordId,
+            @PathParam("stockId") String stockId ,
+            @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
+
+        Boolean ditInsert = data.applyUserKeywordsStock(userId, keywordId, stockId);
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
