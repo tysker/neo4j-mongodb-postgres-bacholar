@@ -28,3 +28,16 @@ insert into users_stocks values (2,2);
 insert into users_stocks values (2,3);
 
 insert into users_stocks values (3,3);
+
+--USER ID, KEYWORD ID, STOCK ID
+insert into users_keywords_stocks values (1,1,1);
+insert into users_keywords_stocks values (1,3,1);
+
+insert into users_keywords_stocks values (2,2,1);
+
+insert into users_keywords_stocks values (3,1,1);
+insert into users_keywords_stocks values (3,2,1);
+insert into users_keywords_stocks values (3,2,2);
+insert into users_keywords_stocks values (3,3,2);
+insert into users_keywords_stocks values (3,1,3);
+insert into users_keywords_stocks values (3,3,3);

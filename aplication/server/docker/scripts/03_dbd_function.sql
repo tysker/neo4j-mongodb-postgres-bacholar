@@ -1,6 +1,7 @@
 drop function if exists add_keyword;
 drop function if exists add_stock;
 drop function if exists add_user;
+drop function if exists apply_keyword_stock;
 
 -- Function FOR ADD NEW KEYWORD
 CREATE OR REPLACE FUNCTION add_keyword(keyword_name varchar)
@@ -99,6 +100,47 @@ BEGIN
 
 		CALL add_user_keyword(userId, keywordId);
 	END IF;
+
+	RETURN did_insert;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Function for applying a keyword if not exists
+CREATE OR REPLACE FUNCTION apply_keyword_stock(_userId int, _keywordName varchar, _stockName varchar) 
+RETURNS boolean AS $$ 
+DECLARE 
+	did_insert boolean := false;
+	keywordId integer;
+	userId integer :=_userId;
+	stockId integer;
+BEGIN 
+	SELECT id INTO keywordId
+	FROM keywords k
+	WHERE k.keyword = _keywordName
+	LIMIT 1;
+
+	IF keywordId IS NULL THEN 
+		INSERT INTO keywords (keyword)
+		VALUES (_keywordName) 
+		RETURNING id INTO keywordId;
+		
+		did_insert := true;
+	END IF;
+
+SELECT id INTO stockId
+	FROM stocks s
+	WHERE s.stockname = _stockName
+	LIMIT 1;
+
+	IF stockId IS NULL THEN 
+		INSERT INTO stocks (stockname)
+		VALUES (_stockName) 
+		RETURNING id INTO stockId;
+	
+		did_insert := true;
+	END IF;
+
+	CALL add_user_keyword_stock(userId, keywordId, stockId);
 
 	RETURN did_insert;
 END;

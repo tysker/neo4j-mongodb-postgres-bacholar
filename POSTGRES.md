@@ -107,7 +107,7 @@ style="height: 70%; width:70%;"
 * CREATE TRIGGER = Her laver vi en **trigger**
 * AFTER INSERT = Reagere efter et **INSERT-statement**
 * ON = Hvilken tabel som triggeren sættes på – her på tabellen **users**
-* FOR EACH ROW = Udføres efter hver række ændres – dette er især relevant, hvis det er en UPDATE-statement, hvor der kan være flere berørte rækker og triggeren så udføres til hver række.
+* FOR EACH ROW = Udføres efter hver række ændres.
 * EXECUTE PROCEDURE = Funktion som skal udføres, når triggeren aktiveres.
 
 Nedenfor vises koden for funktionen **user_adding_log()** som aktiveres i ovenstående trigger.

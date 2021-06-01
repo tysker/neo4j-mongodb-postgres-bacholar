@@ -1,4 +1,6 @@
-DROP DATABASE IF EXISTS dbd_exam;
+--DROP DATABASE IF EXISTS postgres;
+
+DROP TABLE IF EXISTS users_keyword_stocks;
 DROP TABLE IF EXISTS users_keyword;
 DROP TABLE IF EXISTS users_stocks;
 DROP TABLE IF EXISTS keywords CASCADE;
@@ -8,7 +10,7 @@ DROP TABLE IF EXISTS log_keywords;
 DROP TABLE IF EXISTS log_stocks;
 DROP TABLE IF EXISTS log_users;
 
-CREATE DATABASE dbd_exam;
+--CREATE DATABASE postgres;
 
 
 CREATE TABLE IF NOT EXISTS users (
@@ -38,6 +40,13 @@ CREATE TABLE IF NOT EXISTS users_keywords(
 	user_id SERIAL REFERENCES users (id) ON DELETE CASCADE,
 	keyword_id SERIAL REFERENCES keywords (id) ON DELETE CASCADE,
 	PRIMARY KEY (user_id, keyword_id)
+);
+
+CREATE TABLE IF NOT EXISTS users_keywords_stocks(
+	user_id SERIAL REFERENCES users (id) ON DELETE CASCADE,
+	keyword_id SERIAL REFERENCES keywords (id) ON DELETE CASCADE,
+	stock_id SERIAL REFERENCES stocks (id) ON DELETE CASCADE,
+	PRIMARY KEY (user_id, keyword_id, stock_id)
 );
 
 CREATE TABLE IF NOT EXISTS log_keywords (
