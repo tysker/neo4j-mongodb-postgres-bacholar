@@ -147,7 +147,7 @@ public class KeywordServiceImpl implements KeywordService {
                 ps.setString(2, stockName);
                 ResultSet rs = ps.executeQuery();
                 List<Keyword> keywordList = new ArrayList<>();
-                if(rs.next())
+                while(rs.next())
                 {
                     int id = rs.getInt("keyword_id");
                     String key = rs.getString("keyword");
