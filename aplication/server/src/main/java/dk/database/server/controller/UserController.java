@@ -187,8 +187,8 @@ public class UserController {
     /**
      * 
      * @param userId
-     * @param keywordId
-     * @param stockId
+     * @param keyword
+     * @param stock
      * @param uriInfo
      * @return boolean
      * @throws SQLException
@@ -198,11 +198,12 @@ public class UserController {
     @POST
     public Response applyUserKeywordStock(
             @PathParam("userId") int userId,
-            @PathParam("keywordId") String keywordId,
-            @PathParam("stockId") String stockId ,
+            @PathParam("keywordId") String keyword,
+            @PathParam("stockId") String stock ,
             @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
 
-        Boolean ditInsert = data.applyUserKeywordsStock(userId, keywordId, stockId);
+        Boolean ditInsert = data.applyUserKeywordsStock(userId, keyword, stock);
+
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
