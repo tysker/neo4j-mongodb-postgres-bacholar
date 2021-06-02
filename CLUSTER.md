@@ -8,6 +8,13 @@
 
 [Link for cluster tutorial](https://neo4j.com/docs/operations-manual/current/tutorial/local-causal-cluster/#tutorial-local-cluster)
 
+***
+
+Cluster config og replica configuration kan findes in 
+* neo4j_cluster/config folder
+
+***
+
 Start hver Cluster med følgende kommando :
 
 ```
