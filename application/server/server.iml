@@ -132,5 +132,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.3.7" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.7" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.6" level="project" />
+    <orderEntry type="library" name="DBPolyglot-1.0" level="project" />
   </component>
 </module>

@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: dk.ckmwn.impl.StockManagementTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 33.059 s <<< FAILURE! - in dk.ckmwn.impl.StockManagementTest
+mustDeleteStock  Time elapsed: 0.029 s  <<< ERROR!
+java.lang.NoClassDefFoundError: dk/ckmwn/impl/StockManagementImpl$2
+	at dk.ckmwn.impl.StockManagementTest.mustDeleteStock(StockManagementTest.java:52)
+Caused by: java.lang.ClassNotFoundException: dk.ckmwn.impl.StockManagementImpl$2
+	at dk.ckmwn.impl.StockManagementTest.mustDeleteStock(StockManagementTest.java:52)
+
+mustUpdateStock  Time elapsed: 0.014 s  <<< ERROR!
+java.lang.NoClassDefFoundError: dk/ckmwn/impl/StockManagementImpl$4
+	at dk.ckmwn.impl.StockManagementTest.mustUpdateStock(StockManagementTest.java:89)
+Caused by: java.lang.ClassNotFoundException: dk.ckmwn.impl.StockManagementImpl$4
+	at dk.ckmwn.impl.StockManagementTest.mustUpdateStock(StockManagementTest.java:89)
+

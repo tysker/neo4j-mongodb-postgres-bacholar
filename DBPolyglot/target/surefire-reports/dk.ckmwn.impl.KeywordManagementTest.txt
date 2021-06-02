@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: dk.ckmwn.impl.KeywordManagementTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 31.84 s - in dk.ckmwn.impl.KeywordManagementTest

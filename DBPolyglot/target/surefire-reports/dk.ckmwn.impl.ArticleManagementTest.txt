@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: dk.ckmwn.impl.ArticleManagementTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 44.271 s - in dk.ckmwn.impl.ArticleManagementTest
