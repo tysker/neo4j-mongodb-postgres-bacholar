@@ -15,6 +15,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 @Path("/keywords")
@@ -92,6 +94,25 @@ public class KeywordController {
                 .type(MediaType.APPLICATION_JSON_TYPE)
                 .status(Response.Status.OK)
                 .entity(userStockKeyword)
+                .build();
+    }
+
+    @Path("/{stockName}/{width}/")
+    @GET
+    public Response getSuggestedKeywordsByStockName(
+            @PathParam("stockName") String stockName,
+            @PathParam("width") int width,
+            @Context UriInfo uriInfo) {
+
+        Collection<dk.ckmwn.dto.Keyword> keywords = data.suggestKeywordsForStock(new dk.ckmwn.dto.Stock(stockName), width);
+
+        URI uri = uriInfo.getAbsolutePathBuilder()
+                .build();
+        return Response
+                .created(uri)
+                .type(MediaType.APPLICATION_JSON_TYPE)
+                .status(Response.Status.OK)
+                .entity(keywords)
                 .build();
     }
 

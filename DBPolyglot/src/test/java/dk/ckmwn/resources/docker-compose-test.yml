@@ -1,0 +1,11 @@
+version: '3'
+
+# LOGIN: neo4j:neo4j
+
+services:
+#  neo4j:
+#    image: neo4j:enterprise
+#    environment:
+#      - NEO4JLABS_PLUGINS=["graph-data-science"]
+  mongodb:
+    image: mongo:latest

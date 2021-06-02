@@ -56,7 +56,11 @@ public class DataFacadeImpl implements DataFacade {
 
     @Override
     public boolean applyUserKeywordsStock(int userId, String keywordId, String stockId) throws SQLException, ClassNotFoundException {
-        return userService.applyUserKeywordsStock(userId, keywordId, stockId);
+        boolean created = storageManagement.addKeywordToStock(new dk.ckmwn.dto.Stock(stockId), new dk.ckmwn.dto.Keyword(keywordId));
+        if(created) {
+            return userService.applyUserKeywordsStock(userId, keywordId, stockId);
+        }
+        return false;
     }
 
     @Override
