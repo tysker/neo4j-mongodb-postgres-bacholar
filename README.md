@@ -105,7 +105,7 @@ Detailed information about the endpoints are available on the link below.
 2. [**Postgres dokumentation**](POSTGRES.md)
 3. [**MongoDB dokumentation**](MONGODB.md)
 4. [**Neo4j dokumentation**](NEO4J.md)
-5. [**Rapport**](https://docs.google.com/document/d/1I1PoIX5gXd2FQcwOz1R2WeCSwvlbu2i7GzmQ57MK-Vc/edit?ts=60b63585# )
+5. [**Rapport**](http://#)
 6. [**Cluster(ikke implementere)**](CLUSTER.md)
 
 ***
