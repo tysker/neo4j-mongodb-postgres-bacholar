@@ -69,3 +69,7 @@ volumes:
   neo4jDB_logs: 
   mongoDB:
   postgresDB:
+  
+  
+  
+  
