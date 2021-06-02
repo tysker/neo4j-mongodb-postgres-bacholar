@@ -1,0 +1,37 @@
+version: '3'
+
+# LOGIN: neo4j:neo4j
+
+services:
+  neo4j:
+    #image: neo4j:latest
+    image: neo4j:enterprise
+    network_mode: "bridge"
+    restart: unless-stopped
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=none
+      - NEO4J_dbms_memory_pagecache_size=512m
+      - NEO4J_dbms.memory.heap.initial_size=512m
+      - NEO4J_dbms_memory_heap_max__size=512m
+      - NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
+      #      - NEO4J_dbms.allow_format_migrations=true # 7 db in 7 weeks.
+      #      - NEO4J_dbms_active__database=movies.db # 7 in 7
+      - NEO4JLABS_PLUGINS=["graph-data-science"]
+    volumes:
+      - ./volume/conf:/var/lib/neo4j/conf
+      - ./volume/plugins:/plugins
+      - ./volume/data:/data
+      - ./volume/import:/import
+      - ./volume/logs:/logs
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongodata/mongodb_data_container:/data/db
