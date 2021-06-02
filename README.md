@@ -1,54 +1,99 @@
-# Database project:
+# Database projekt:
 
-**Date: 02-juni-2021**
+**Dato: 02-juni-2021**
 
 
-**Authors:**
+**Studerende:**
 
-* Claus Kramath,
-* Morten Feldt,
-* Mads Wulff,
+* Claus Kramath, cph-ck83@cphbusiness.dk
+* Morten Feldt, cph-mf227@cphbusiness.dk
+* Mads Wulff, cph-mn492@cphbusiness.dk
 * Jörg Oertel, cph-jo130@cphbusiness.dk
 
 *** 
 
+## Installations instruktioner
+
+### Kør Postgres, MangoDB og Neo4j med hjælp af Docker
+
+For alle tre databaser, valgte vi at oprette en docker-compose-fil for nem implementering.
+Vores docker-compose-fil kan køres enten i en bash-terminal eller i Intellij. 
+
+1.  **Ind i Intellij:**
+
 <img 
-src="./images/dsc_db.png" 
-alt="EER Diagram"
-height="40%" 
-width="40%"
+src="./images/rundocker.png" 
+alt="docker Intellij file"
+style="height: 70%; width:70%;"
+/>
+
+2. **Ind i bash terminalen:**
+
+
+```
+docker-compose up [-d]
+```
+
+For at stoppe containern, indtast:
+
+```
+docker-compose down
+```
+
+***
+
+### Postgres
+
+* port: 5438
+* role
+    * default role:
+        * password: postgres
+        * username: postgres
+    * restricted role:
+        * password: dao
+        * username: dao
+
+Inde i docker-compose-filen under volumes, fortæller vi docker at kopiere forskellige SQL-scripts ind i docker-containeren. Docker kører scripts i alfabetisk rækkefølge, og derfor har vi kontrol over, hvilket script der først skal udføres, og hvilket sidste. 
+
+***
+
+### MongoDB
+
+* port: 27017
+* role
+    * password: root
+    * username: rootpassword
+
+***
+
+### Neo4j
+ 
+* port: 7474
+* role:
+    * password: no password needed (efterlad blank)
+    * username: no username needed (efterlad blank)
+* Neo4j er tilgængelig på:
+    * http://localhost:7474/browser/
+
+***
+
+### Compose fil
+
+<img 
+src="./images/docker_compose.png" 
+alt="docker-compose file"
+style="height: 70%; width:70%;"
 />
 
 ***
 
-### Installation Instructions
+## Dokumentation
+
+1. [**Java Server dokumentation**](SERVER.md)
+2. [**Postgres dokumentation**](POSTGRES.md)
+3. [**MongoDB dokumentation**](MONGODB.md)
+4. [**Neo4j dokumentation**](NEO4J.md)
 
 ***
 
-* [**Java Server documentation**](SERVER.md)
-* [**Postgres documentation**](POSTGRES.md)
-* [**MongoDB documentation**](MONGODB.md)
-* [**Neo4j documentation**](NEO4J.md)
-
-***
-
-Data:
-- Artikler
-- User relation
-
-Functions:
-- graph queries
-- cluster, replica (horizontal scaling)
-
-**Postgres:**
-- Docker?
-Data: 
-- User (username, password, search history)
-- Aktie tabel
-- Søgeord
-
-Functions:
-- grant users, trigger, stored procedures, view
-
-**Server:**
 
