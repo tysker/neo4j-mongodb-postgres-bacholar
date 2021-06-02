@@ -75,6 +75,10 @@ Inde i docker-compose-filen under volumes, fortæller vi docker at kopiere forsk
 * Neo4j er tilgængelig på:
     * http://localhost:7474/browser/
 
+***
+
+### Compose fil
+
 <img 
 src="./images/docker_compose.png" 
 alt="docker-compose file"
@@ -85,10 +89,10 @@ style="height: 70%; width:70%;"
 
 ## Dokumentation
 
-* [**Java Server dokumentation**](SERVER.md)
-* [**Postgres dokumentation**](POSTGRES.md)
-* [**MongoDB dokumentation**](MONGODB.md)
-* [**Neo4j dokumentation**](NEO4J.md)
+1. [**Java Server dokumentation**](SERVER.md)
+2. [**Postgres dokumentation**](POSTGRES.md)
+3. [**MongoDB dokumentation**](MONGODB.md)
+4. [**Neo4j dokumentation**](NEO4J.md)
 
 ***
 
