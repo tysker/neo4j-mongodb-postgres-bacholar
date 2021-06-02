@@ -12,15 +12,6 @@
 
 *** 
 
-<img 
-src="./images/dsc_db.png" 
-alt="EER Diagram"
-height="40%" 
-width="40%"
-/>
-
-***
-
 ## Installations instruktioner
 
 ### Kør Postgres, MangoDB og Neo4j med hjælp af Docker
@@ -40,20 +31,55 @@ style="height: 70%; width:70%;"
 
 
 ```
-docker-compose up
+docker-compose up [-d]
 ```
 
-**Remember to change the port number from 5432 to 5438!**
+For at stoppe containern, indtast:
+
+```
+docker-compose down
+```
+
+***
+
+### Postgres
+
+* port: 5438
+* role
+    * default role:
+        * password: postgres
+        * username: postgres
+    * restricted role:
+        * password: dao
+        * username: dao
+
+Inde i docker-compose-filen under volumes, fortæller vi docker at kopiere forskellige SQL-scripts ind i docker-containeren. Docker kører scripts i alfabetisk rækkefølge, og derfor har vi kontrol over, hvilket script der først skal udføres, og hvilket sidste. 
+
+***
+
+### MongoDB
+
+* port: 27017
+* role
+    * password: root
+    * username: rootpassword
+
+***
+
+### Neo4j
+ 
+* port: 7474
+* role:
+    * password: no password needed (efterlad blank)
+    * username: no username needed (efterlad blank)
+* Neo4j er tilgængelig på:
+    * http://localhost:7474/browser/
 
 <img 
 src="./images/docker_compose.png" 
 alt="docker-compose file"
 style="height: 70%; width:70%;"
 />
-
-
-Inside the docker-compose file, under volumes, we tell docker to copy variuos sql scripts into the docker-container. Docker runs the scripts in an alphabetically order, and therefore we have controll over which script is going to be executed first and which one last.
-
 
 ***
 

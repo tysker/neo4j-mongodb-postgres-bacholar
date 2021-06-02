@@ -19,11 +19,11 @@ services:
         #- NEO4J_dbms_active__database=movies.db # 7 in 7
         - NEO4JLABS_PLUGINS=["graph-data-science"]
       volumes:
-        - ./volume/conf:/var/lib/neo4j/conf
-        - ./volume/plugins:/plugins
-        - ./volume/data:/data
-        - ./volume/import:/import
-        - ./volume/logs:/logs
+        - neo4jDB:/var/lib/neo4j/conf
+        - neo4jDB_plugins:/plugins
+        - neo4jDB_data:/data
+        - neo4jDB_import:/import
+        - neo4jDB_logs:/logs
     mongodb:
       image: mongo:latest
       environment:
@@ -32,7 +32,7 @@ services:
       ports:
         - 27017:27017
       volumes:
-        - ./mongodata/mongodb_data_container:/data/db
+        - mongoDB:/data/db
     postgres:
       image: postgres:latest
       restart: always
@@ -46,7 +46,7 @@ services:
       ports:
         - '5438:5432'
       volumes:
-        - /var/lib/docker/volumes:/var/lib/postgresql/data/
+        - postgresDB:/var/lib/postgresql/data/
         # copy the sql script to create tables
         - ./scripts/01_dbd_tables.sql:/docker-entrypoint-initdb.d/01_dbd_tables.sql
         # copy the sql script to create triggers
@@ -60,4 +60,12 @@ services:
         # copy the sql script to fill tables
         - ./scripts/06_dbd_input.sql:/docker-entrypoint-initdb.d/06_dbd_input.sql
         # copy the sql script to apply roles
-        - ./scripts/07_dbd_roles.sql:/docker-entrypoint-initdb.d/07_dbd_roles.sql  
+        - ./scripts/07_dbd_roles.sql:/docker-entrypoint-initdb.d/07_dbd_roles.sql     
+volumes:
+  neo4jDB:
+  neo4jDB_plugins:
+  neo4jDB_data:
+  neo4jDB_import:
+  neo4jDB_logs: 
+  mongoDB:
+  postgresDB:
