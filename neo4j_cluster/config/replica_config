@@ -1,0 +1,22 @@
+# REPLICA 1
+
+dbms.mode=READ_REPLICA
+causal_clustering.initial_discovery_members=localhost:5000,localhost:5001,localhost:5002
+causal_clustering.discovery_listen_address=:5003
+causal_clustering.transaction_listen_address=:6003
+dbms.connector.bolt.listen_address=:7690
+dbms.connector.http.listen_address=:7477
+dbms.connector.https.listen_address=:6477
+dbms.backup.listen_address=0.0.0.0:6365
+
+
+# REPLICA 2
+
+dbms.mode=READ_REPLICA
+causal_clustering.initial_discovery_members=localhost:5000,localhost:5001,localhost:5002
+causal_clustering.discovery_listen_address=:5004
+causal_clustering.transaction_listen_address=:6004
+dbms.connector.bolt.listen_address=:7691
+dbms.connector.http.listen_address=:7478
+dbms.connector.https.listen_address=:6478
+dbms.backup.listen_address=0.0.0.0:6366

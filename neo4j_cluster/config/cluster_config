@@ -1,0 +1,44 @@
+# core-01
+
+dbms.mode=CORE
+causal_clustering.minimum_core_cluster_size_at_formation=3
+causal_clustering.minimum_core_cluster_size_at_runtime=3
+causal_clustering.initial_discovery_members=localhost:5000,localhost:5001,localhost:5002
+causal_clustering.discovery_listen_address=:5000
+causal_clustering.transaction_listen_address=:6000
+causal_clustering.raft_listen_address=:7000
+dbms.connector.bolt.listen_address=:7687
+dbms.connector.http.listen_address=:7474
+dbms.connector.https.listen_address=:6474
+dbms.backup.listen_address=0.0.0.0:6362
+dbms.security.auth_enabled=false
+
+# core-02
+
+dbms.mode=CORE
+causal_clustering.minimum_core_cluster_size_at_formation=3
+causal_clustering.minimum_core_cluster_size_at_runtime=3
+causal_clustering.initial_discovery_members=localhost:5000,localhost:5001,localhost:5002
+causal_clustering.discovery_listen_address=:5001
+causal_clustering.transaction_listen_address=:6001
+causal_clustering.raft_listen_address=:7001
+dbms.connector.bolt.listen_address=:7688
+dbms.connector.http.listen_address=:7475
+dbms.connector.https.listen_address=:6475
+dbms.backup.listen_address=0.0.0.0:6363
+dbms.security.auth_enabled=false
+
+# core-03
+
+dbms.mode=CORE
+causal_clustering.minimum_core_cluster_size_at_formation=3
+causal_clustering.minimum_core_cluster_size_at_runtime=3
+causal_clustering.initial_discovery_members=localhost:5000,localhost:5001,localhost:5002
+causal_clustering.discovery_listen_address=:5002
+causal_clustering.transaction_listen_address=:6002
+causal_clustering.raft_listen_address=:7002
+dbms.connector.bolt.listen_address=:7689
+dbms.connector.http.listen_address=:7476
+dbms.connector.https.listen_address=:6476
+dbms.backup.listen_address=0.0.0.0:6364
+dbms.security.auth_enabled=false
