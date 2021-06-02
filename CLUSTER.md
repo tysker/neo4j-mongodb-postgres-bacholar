@@ -44,7 +44,7 @@ Kontroller clusters status ved at køre følgende i Neo4j Browser :
 ```
 
 <img 
-src="../images/cluster.png" 
+src="./images/cluster.png" 
 alt="cluster" 
 width="60%" 
 height="60%">
@@ -69,7 +69,7 @@ Brug følgende loginoplysninger for replikaer og cluster:
 ### Create 2 replicas
 
 <img 
-src="../images/replica.png" 
+src="./images/replica.png" 
 alt="cluster" 
 width="60%" 
 height="60%">
