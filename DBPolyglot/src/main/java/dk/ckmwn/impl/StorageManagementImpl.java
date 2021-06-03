@@ -14,7 +14,6 @@ import org.neo4j.driver.AuthTokens;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.GraphDatabase;
 
-import java.util.Collection;
 import java.util.List;
 
 public class StorageManagementImpl implements StorageManagement {
@@ -53,7 +52,7 @@ public class StorageManagementImpl implements StorageManagement {
     //Færdig
     @Override
     public List<Keyword> suggestKeywordsForStock(Stock stock, int width) {
-        return null;
+        return km.suggestKeywordsForStock(stock, width);
     }
 
     //Færdig

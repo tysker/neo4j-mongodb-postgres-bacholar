@@ -6,6 +6,7 @@ import dk.database.server.entities.*;
 
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public interface DataFacade {
@@ -30,7 +31,7 @@ public interface DataFacade {
     Map<Integer, Stock> getAllStocks() throws SQLException, ClassNotFoundException ;
     Stock getStockById(int stockId) throws SQLException, ClassNotFoundException ;
     Stock addStock(StockCreation stockCreation) throws SQLException, ClassNotFoundException ;
-    Collection<dk.ckmwn.dto.Keyword> suggestKeywordsForStock(dk.ckmwn.dto.Stock stock, int width);
+    List<dk.ckmwn.dto.Keyword> suggestKeywordsForStock(dk.ckmwn.dto.Stock stock, int width);
 
     //Article
     boolean createArticle(Article article);

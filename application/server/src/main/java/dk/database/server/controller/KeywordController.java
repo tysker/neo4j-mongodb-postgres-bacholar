@@ -104,7 +104,7 @@ public class KeywordController {
             @PathParam("width") int width,
             @Context UriInfo uriInfo) {
 
-        Collection<dk.ckmwn.dto.Keyword> keywords = data.suggestKeywordsForStock(new dk.ckmwn.dto.Stock(stockName), width);
+        List<dk.ckmwn.dto.Keyword> keywords = data.suggestKeywordsForStock(new dk.ckmwn.dto.Stock(stockName), width);
 
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();

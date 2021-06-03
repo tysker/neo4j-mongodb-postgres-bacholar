@@ -15,6 +15,7 @@ import dk.database.server.service.interfaces.UserService;
 
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class DataFacadeImpl implements DataFacade {
@@ -103,7 +104,7 @@ public class DataFacadeImpl implements DataFacade {
     }
 
     @Override
-    public Collection<dk.ckmwn.dto.Keyword> suggestKeywordsForStock(dk.ckmwn.dto.Stock stock, int width) {
+    public List<dk.ckmwn.dto.Keyword> suggestKeywordsForStock(dk.ckmwn.dto.Stock stock, int width) {
         return storageManagement.suggestKeywordsForStock(stock, width);
     }
 
