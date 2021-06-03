@@ -7,6 +7,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -96,7 +101,6 @@ public class KeywordManagementTest extends TestBase {
     @Test
     public void mustRemoveKeywordFromStock() {
         //Arrange
-
         Stock stock = new Stock("Tesla");
         km.createKeyword(keyword);
         sm.createStock(stock);
@@ -104,6 +108,25 @@ public class KeywordManagementTest extends TestBase {
         boolean res = km.removeKeywordFromStock(keyword, stock);
         //Assert
         assertTrue(res);
+    }
+
+    @Test
+    public void mustGetSuggestedKeywords() {
+        //Arrange
+        Stock tsla = new Stock("Tesla");
+        Stock bmwi = new Stock("BMWi");
+        Keyword batteries = new Keyword("Batteries");
+        sm.createStock(tsla);
+        sm.createStock(bmwi);
+        km.createKeyword(batteries);
+        km.createKeyword(keyword);
+        km.addKeywordToStock(batteries, tsla);
+        km.addKeywordToStock(batteries, bmwi);
+        km.addKeywordToStock(keyword, tsla);
+        //Act
+        List<Keyword> keywordList = km.suggestKeywordsForStock(bmwi, 3);
+        //Assert
+        assertEquals(keyword.getText(), keywordList.get(1).getText());
     }
 
 }

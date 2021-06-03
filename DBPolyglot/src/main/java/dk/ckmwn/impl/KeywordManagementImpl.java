@@ -6,7 +6,9 @@ import dk.ckmwn.dto.Stock;
 import org.neo4j.driver.*;
 
 import java.security.Key;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import static org.neo4j.driver.Values.parameters;
 
@@ -16,6 +18,20 @@ public class KeywordManagementImpl implements KeywordManagement {
 
     public KeywordManagementImpl(Driver neoDriver) {
         this.neoDriver = neoDriver;
+    }
+
+    private boolean setupGraph() {
+        try (Session session = neoDriver.session()) {
+            return session.writeTransaction(new TransactionWork<Boolean>() {
+                @Override
+                public Boolean execute(Transaction transaction) {
+                    Result result = transaction.run("CALL gds.graph.create('myGraph', '*', {Part: {orientation:'UNDIRECTED'}});");
+                    return true;
+                }
+            });
+        } catch (Exception e) {
+        }
+        return false;
     }
 
     @Override
@@ -114,7 +130,33 @@ public class KeywordManagementImpl implements KeywordManagement {
     }
 
     @Override
-    public Collection<Keyword> suggestKeywordsForStock(Stock stock, int width) {
+    public List<Keyword> suggestKeywordsForStock(Stock stock, int width) {
+        setupGraph();
+        try (Session session = neoDriver.session()) {
+            return session.writeTransaction(new TransactionWork<List<Keyword>>() {
+                @Override
+                public List<Keyword> execute(Transaction transaction) {
+                    Result result = transaction.run("MATCH (s:Stock{symbol:$symbol}) " +
+                                    "WITH id(s) AS startNode " +
+                                    "CALL gds.alpha.bfs.stream('myGraph', {startNode: startNode, maxDepth:$width}) " +
+                                    "YIELD path " +
+                                    "UNWIND [ n in nodes(path) | n.text ] AS texts " +
+                                    "RETURN texts " +
+                                    "ORDER BY texts",
+                            parameters("width", width, "symbol", stock.getSymbol()));
+                    List<Keyword> keywords = new ArrayList<>();
+                    while (result.hasNext()) {
+                        String text = result.peek().get(0).asString();
+                        if(!text.equalsIgnoreCase("null")) {
+                            keywords.add(new Keyword(text));
+                        }
+                        result.next();
+                    }
+                    return keywords;
+                }
+            });
+        } catch (Exception e) {
+        }
         return null;
     }
 }
