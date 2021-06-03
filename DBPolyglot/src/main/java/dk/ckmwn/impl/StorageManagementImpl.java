@@ -15,6 +15,7 @@ import org.neo4j.driver.Driver;
 import org.neo4j.driver.GraphDatabase;
 
 import java.util.Collection;
+import java.util.List;
 
 public class StorageManagementImpl implements StorageManagement {
 
@@ -51,7 +52,7 @@ public class StorageManagementImpl implements StorageManagement {
     }
     //Færdig
     @Override
-    public Collection<Keyword> suggestKeywordsForStock(Stock stock, int width) {
+    public List<Keyword> suggestKeywordsForStock(Stock stock, int width) {
         return null;
     }
 

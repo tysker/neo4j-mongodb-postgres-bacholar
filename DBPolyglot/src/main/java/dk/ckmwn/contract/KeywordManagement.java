@@ -2,8 +2,7 @@ package dk.ckmwn.contract;
 
 import dk.ckmwn.dto.Keyword;
 import dk.ckmwn.dto.Stock;
-
-import java.util.Collection;
+import java.util.List;
 
 public interface KeywordManagement {
 
@@ -12,6 +11,6 @@ public interface KeywordManagement {
     Keyword getKeyword(String text);
     boolean addKeywordToStock(Keyword keyword, Stock stock);
     boolean removeKeywordFromStock(Keyword keyword, Stock stock);
-    Collection<Keyword> suggestKeywordsForStock(Stock stock, int width);
+    List<Keyword> suggestKeywordsForStock(Stock stock, int width);
 
 }
