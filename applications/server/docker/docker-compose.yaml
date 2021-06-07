@@ -1,0 +1,76 @@
+version: '3.7'
+# LOGIN: neo4j:neo4j
+services:
+    neo4j:
+      #image: neo4j:latest
+      image: neo4j:enterprise
+      network_mode: "bridge"
+      restart: unless-stopped
+      ports:
+        - "7474:7474"
+        - "7687:7687"
+      environment:
+        - NEO4J_AUTH=neo4j/1234
+        #- NEO4J_AUTH=none
+        - NEO4J_dbms_memory_pagecache_size=512m
+        - NEO4J_dbms.memory.heap.initial_size=512m
+        - NEO4J_dbms_memory_heap_max__size=512m
+        - NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
+        #- NEO4J_dbms.allow_format_migrations=true # 7 db in 7 weeks.
+        #- NEO4J_dbms_active__database=movies.db # 7 in 7
+        - NEO4JLABS_PLUGINS=["graph-data-science"]
+      volumes:
+        - neo4jDB:/var/lib/neo4j/conf
+        - neo4jDB_plugins:/plugins
+        - neo4jDB_data:/data
+        - neo4jDB_import:/import
+        - neo4jDB_logs:/logs
+    mongodb:
+      image: mongo:latest
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: 
+        MONGO_INITDB_ROOT_PASSWORD: 
+      ports:
+        - "27017:27017"
+      volumes:
+        - mongoDB:/data/db
+    postgres:
+      image: postgres:latest
+      restart: always
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      logging:
+        options:
+         max-size: 10m
+         max-file: "3"
+      ports:
+        - '5438:5432'
+      volumes:
+        #- postgresDB:/var/lib/postgresql/data/
+        # copy the sql script to create tables
+        - ./scripts/01_dbd_tables.sql:/docker-entrypoint-initdb.d/01_dbd_tables.sql
+        # copy the sql script to create triggers
+        - ./scripts/04_dbd_trigger.sql:/docker-entrypoint-initdb.d/04_dbd_trigger.sql
+        # copy the sql script to create views
+        - ./scripts/05_dbd_views.sql:/docker-entrypoint-initdb.d/05_dbd_views.sql
+        # copy the sql script to create procedures
+        - ./scripts/02_dbd_stored_procedures.sql:/docker-entrypoint-initdb.d/02_dbd_stored_procedures.sql
+        # copy the sql script to create functions
+        - ./scripts/03_dbd_function.sql:/docker-entrypoint-initdb.d/03_dbd_function.sql
+        # copy the sql script to fill tables
+        - ./scripts/06_dbd_input.sql:/docker-entrypoint-initdb.d/06_dbd_input.sql
+        # copy the sql script to apply roles
+        - ./scripts/07_dbd_roles.sql:/docker-entrypoint-initdb.d/07_dbd_roles.sql     
+volumes:
+  neo4jDB:
+  neo4jDB_plugins:
+  neo4jDB_data:
+  neo4jDB_import:
+  neo4jDB_logs: 
+  mongoDB:
+  postgresDB:
+  
+  
+  
+  
