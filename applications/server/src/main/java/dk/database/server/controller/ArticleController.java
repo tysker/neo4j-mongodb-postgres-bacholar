@@ -25,11 +25,6 @@ public class ArticleController {
                 .build();
         boolean created = data.createArticle(article);
 
-        //if(!created)
-        //{
-        //    throw new DataConflictException("Sorry, we were not able to handle your request.");
-        //}
-
         return Response
                 .created(uri)
                 .status(Response.Status.CREATED)
@@ -39,19 +34,15 @@ public class ArticleController {
 
     @Path("/{id}")
     @GET
-    public Response createArticle(@PathParam("id") String id, @Context UriInfo uriInfo) {
+    public Response getArticleById(@PathParam("id") String id, @Context UriInfo uriInfo) {
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         Article article = data.getArticle(id);
 
-        //if(article == null)
-        //{
-        //    throw new DataConflictException("Sorry, we were not able to handle your request.");
-        //}
 
         return Response
                 .created(uri)
-                .status(Response.Status.CREATED)
+                .status(Response.Status.OK)
                 .entity(article)
                 .build();
     }

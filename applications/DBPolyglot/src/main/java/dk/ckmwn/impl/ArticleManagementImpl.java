@@ -15,7 +15,8 @@ import static com.mongodb.client.model.Updates.set;
 import static org.neo4j.driver.Values.parameters;
 
 
-public class ArticleManagementImpl implements ArticleManagement, AutoCloseable {
+//public class ArticleManagementImpl implements ArticleManagement, AutoCloseable {
+public class ArticleManagementImpl implements ArticleManagement {
 
     private MongoCollection<Document> articles;
     private Driver neoDriver;
@@ -25,11 +26,11 @@ public class ArticleManagementImpl implements ArticleManagement, AutoCloseable {
         this.neoDriver = neoDriver;
     }
 
-    @Override
-    public void close() throws Exception
-    {
-        neoDriver.close();
-    }
+//    @Override
+//    public void close() throws Exception
+//    {
+//        neoDriver.close();
+//    }
 
     /**
      * Opretter artikel i MongoDB.

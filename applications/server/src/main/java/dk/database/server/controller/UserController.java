@@ -36,11 +36,6 @@ public class UserController {
     public Response getAllUsers(@Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Map<Integer, User> users = data.getAllUsers();
 
-        //if(users == null)
-        //{
-        //    throw new DataNotFoundException("Sorry, we were not able to handle your request.");
-        //}
-
         URI uri = uriInfo.getAbsolutePathBuilder().build();
         return Response
                 .created(uri)
@@ -61,11 +56,6 @@ public class UserController {
     @GET
     public Response getUserById(@PathParam("userId") int userid, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         User user = data.getUserById(userid);
-
-        //if(user == null)
-        //{
-        //    throw new DataNotFoundException("Sorry, we were not able to handle your request. User with id " + userid + " can't be found in our system. ");
-        //}
 
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
@@ -88,11 +78,6 @@ public class UserController {
     @GET
     public Response getUserKeyword(@PathParam("userId") int userid, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         UserKeyword user = data.getUserKeyword(userid);
-
-        //if(user == null)
-        //{
-        //    throw new DataNotFoundException("Sorry, we were not able to handle your request. User with id " + userid + " can't be found in our system.");
-        //}
 
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
@@ -118,11 +103,6 @@ public class UserController {
                 .build();
         User user = data.addUser(userCreation);
 
-        //if(user == null )
-        //{
-        //    throw new DataConflictException("Sorry, we were not able to handle your request. " + userCreation.getUserName() + " can not be added.");
-        //}
-
         return Response
                 .created(uri)
                 .status(Response.Status.CREATED)
@@ -142,11 +122,6 @@ public class UserController {
     @POST
     public Response applyUserStock(@RequestBody UserStockCreation userStockCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Boolean ditInsert = data.applyStock(userStockCreation);
-
-        //if(!ditInsert)
-        //{
-        //    throw new DataConflictException("Sorry, we were not able to handle your request. " + userStockCreation.getStockName() + " can not be added.");
-        //}
 
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
@@ -170,11 +145,6 @@ public class UserController {
     public Response applyUserKeyword(@RequestBody UserKeywordCreation userKeywordCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Boolean ditInsert = data.applyKeyword(userKeywordCreation);
 
-        //if(!ditInsert)
-        //{
-        //    throw new DataConflictException("Sorry, we were not able to handle your request. " + userKeywordCreation.getKeywordName() + " can not be added.");
-        //}
-
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
         return Response
@@ -195,12 +165,12 @@ public class UserController {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    @Path("/user/{userId}/keyword/{keywordId}/stock/{stockId}")
+    @Path("/user/{userId}/keyword/{keyword}/stock/{stock}")
     @POST
     public Response applyUserKeywordStock(
             @PathParam("userId") int userId,
-            @PathParam("keywordId") String keyword,
-            @PathParam("stockId") String stock ,
+            @PathParam("keyword") String keyword,
+            @PathParam("stock") String stock ,
             @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
 
         Boolean ditInsert = data.applyUserKeywordsStock(userId, keyword, stock);

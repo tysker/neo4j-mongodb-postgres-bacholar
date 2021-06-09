@@ -34,6 +34,10 @@ public class StorageManagementImpl implements StorageManagement {
 
     //Færdig
     @Override
+    public boolean createKeyword(Keyword keyword) { return km.createKeyword(keyword); }
+
+    //Færdig
+    @Override
     public boolean createStock(Stock stock) {
         return sm.createStock(stock);
     }

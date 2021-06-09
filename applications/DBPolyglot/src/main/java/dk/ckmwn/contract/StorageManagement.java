@@ -14,4 +14,5 @@ public interface StorageManagement {
     List<Keyword> suggestKeywordsForStock(Stock stock, int width);
     boolean createArticle(Article article);
     Article getArticle(String id);
+    boolean createKeyword(Keyword keyword);
 }

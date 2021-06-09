@@ -33,11 +33,6 @@ public class StockController {
     public Response getAllStocks(@Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Map<Integer, Stock> stocks = data.getAllStocks();
 
-        //if(stocks == null)
-        //{
-        //    throw new DataNotFoundException("Sorry, we were not able to handle your request.");
-        //}
-
         URI uri = uriInfo.getAbsolutePathBuilder().build();
         return Response
                 .created(uri)
@@ -59,11 +54,6 @@ public class StockController {
     public Response getStockById(
             @PathParam("stockId") int stockId, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Stock stock = data.getStockById(stockId);
-
-        //if(stock == null)
-        //{
-        //    throw new DataNotFoundException("Sorry, we were not able to handle your request. Stock with id " + stockId + " can't be found in our system. ");
-        //}
 
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();
@@ -87,11 +77,6 @@ public class StockController {
     @POST
     public Response addStock(@RequestBody StockCreation stockCreation, @Context UriInfo uriInfo) throws SQLException, ClassNotFoundException {
         Stock _stock = data.addStock(stockCreation);
-
-        //if(_stock == null )
-        //{
-        //    throw new DataConflictException("Sorry, we were not able to handle your request. " + stockCreation.getStockName() + " can not be added.");
-        //}
 
         URI uri = uriInfo.getAbsolutePathBuilder()
                 .build();

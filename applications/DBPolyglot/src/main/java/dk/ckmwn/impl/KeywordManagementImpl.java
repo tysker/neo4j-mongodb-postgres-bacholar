@@ -110,10 +110,7 @@ public class KeywordManagementImpl implements KeywordManagement {
                 return session.writeTransaction(new TransactionWork<Boolean>() {
                     @Override
                     public Boolean execute(Transaction transaction) {
-                        Keyword test = getKeyword(keyword.getText());
-                        if(test == null){
-                            createKeyword(keyword);
-                        }
+
                         Result result = transaction.run("MATCH (s:Stock {symbol: $symbol}), (k:Keyword {text: $text}) " +
                                         "CREATE (s)-[r:Part]->(k);",
                                 parameters("text", keyword.getText(), "symbol", stock.getSymbol()));

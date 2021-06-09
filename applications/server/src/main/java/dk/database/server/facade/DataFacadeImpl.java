@@ -14,7 +14,6 @@ import dk.database.server.service.interfaces.StockService;
 import dk.database.server.service.interfaces.UserService;
 
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -56,10 +55,10 @@ public class DataFacadeImpl implements DataFacade {
     }
 
     @Override
-    public boolean applyUserKeywordsStock(int userId, String keywordId, String stockId) throws SQLException, ClassNotFoundException {
-        boolean created = storageManagement.addKeywordToStock(new dk.ckmwn.dto.Stock(stockId), new dk.ckmwn.dto.Keyword(keywordId));
+    public boolean applyUserKeywordsStock(int userId, String keyword, String stock) throws SQLException, ClassNotFoundException {
+        boolean created = storageManagement.addKeywordToStock(new dk.ckmwn.dto.Stock(stock), new dk.ckmwn.dto.Keyword(keyword));
         if(created) {
-            return userService.applyUserKeywordsStock(userId, keywordId, stockId);
+            return userService.applyUserKeywordsStock(userId, keyword, stock);
         }
         return false;
     }
@@ -76,7 +75,8 @@ public class DataFacadeImpl implements DataFacade {
 
     @Override
     public Keyword addKeyword(KeywordCreation keywordCreation) throws SQLException, ClassNotFoundException {
-        return keywordService.addKeyword(keywordCreation);
+        boolean created = storageManagement.createKeyword(new dk.ckmwn.dto.Keyword(keywordCreation.getKeyword()));
+        if(created) { return keywordService.addKeyword(keywordCreation); } return null;
     }
 
     @Override
@@ -117,4 +117,5 @@ public class DataFacadeImpl implements DataFacade {
     public Article getArticle(String id) {
         return storageManagement.getArticle(id);
     }
+
 }
